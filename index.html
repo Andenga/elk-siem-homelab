@@ -4,8 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temparature Conversion Program</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div id="conversioncontainer">
+
+    <h1>Temparature Conversion Program</h1>
+    <div id="innerconversioncontainer">
+    <div id="left">
+    <input type="text" name="left" id="leftinput" autofocus>
+    <select name="temparatures" id="lefttemparatures" >
+        <option value="leftCelsius">Degree Celsius</option>
+        <option value="leftFahrenheit">Fahrenheit</option>
+        <option value="leftKelvin">Kelvin</option>
+    </select>
+    </div>
+    <label>=</label>
+    <div id="right">
+    <input type="text" name="right" id="rightinput">
+    <select name="temparatures" id="righttemparatures">
+        <option value="rightCelsius">Degree Celsius</option>
+        <option value="rightFahrenheit">Fahrenheit</option>
+        <option value="rightKelvin">Kelvin</option>
+    </select>
+    </div>
+    </div>
+    <p id="formula"><span class="formcolor">Formula:</span> </p>
+    </div>
+
+
+    <script src="main.js"></script>
 </body>
 </html>
