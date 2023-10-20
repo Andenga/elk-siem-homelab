@@ -1,37 +1,48 @@
-function celsiusToFahrenheit(temp) {
+document.addEventListener("DOMContentLoaded", function () {
+    const leftInput = document.getElementById("leftinput");
+    const rightInput = document.getElementById("rightinput");
+    const leftSelect = document.getElementById("lefttemparatures");
+    const rightSelect = document.getElementById("righttemparatures");
 
-    temp = (temp - 32) * 5/9  
-    return `${temp}°C` 
-}
+    function updateConversion() {
+        const leftValue = parseFloat(leftInput.value);
+        if (isNaN(leftValue)) {
+            rightInput.value = "";
+            return;
+        }
 
-function FahrenheitToCelsius(temp) {
-    
-    temp = (temp * 1.8) + 32 
-    return `${temp}°F`
-}
+        const leftUnit = leftSelect.value.replace("left", "");
+        const rightUnit = rightSelect.value.replace("right", "");
 
-function FahrenheitToKelvin(temp) {
+        let result;
+        if (leftUnit === rightUnit) {
+            result = leftValue;
+        } else if (leftUnit === "Celsius") {
+            if (rightUnit === "Fahrenheit") {
+                result = (leftValue * 9) / 5 + 32;
+            } else if (rightUnit === "Kelvin") {
+                result = leftValue + 273.15;
+            }
+        } else if (leftUnit === "Fahrenheit") {
+            if (rightUnit === "Celsius") {
+                result = ((leftValue - 32) * 5) / 9;
+            } else if (rightUnit === "Kelvin") {
+                result = ((leftValue - 32) * 5) / 9 + 273.15;
+            }
+        } else if (leftUnit === "Kelvin") {
+            if (rightUnit === "Celsius") {
+                result = leftValue - 273.15;
+            } else if (rightUnit === "Fahrenheit") {
+                result = ((leftValue - 273.15) * 9) / 5 + 32;
+            }
+        }
 
-    temp = (temp - 273) * 9/5 + 32
-    return `${temp}K`
-}
+        rightInput.value = result.toFixed(2);
+    }
+    leftInput.addEventListener("input", updateConversion);
+    leftSelect.addEventListener("change", updateConversion);
+    rightInput.addEventListener("input", updateConversion);
+    rightSelect.addEventListener("change", updateConversion);
 
-function KelvintoFahrenheit(temp) {
-
-    temp = (temp - 32) * 5/9 +273
-    return `${temp}°F`    
-}
-
-function KelvintoCelsius(temp) {
-
-    temp = temp + 273
-    return `${temp}K`
-}
-
-function celsiusToKelvin(temp) {
-
-    temp = temp - 273
-    return `${temp}°C`
-}
-
-
+    updateConversion();
+});
