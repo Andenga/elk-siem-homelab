@@ -87,6 +87,26 @@ ping -c 4 192.168.75.130   # ELK server
 ping -c 4 192.168.75.140   # Windows victim
 ping -c 4 192.168.75.150   # Linux victim
 ```
+
+
+```python
+Notes
+I configured the VM ware to Host only
+![Host only configuration](/Images/image.png)
+
+
+Windows ipv4 address : 192.168.218.128   # Windows victim
+Elk server : 192.168.57.133
+Kali linux : 192.168.218.129
+Ubuntu server : 192.168.218.131
+
+ping -c 4 192.168.218.131 #Ubuntu server
+ping -c 4 192.168.57.133 #Elk server
+ping -c 4 192.168.218.128 #Windows victim
+```
+
+
+
 > 📝 Save this output → `logs/network-connectivity-test.txt`.
 
 If pings to Windows fail: Windows Firewall blocks ICMP by default — enable "File and Printer Sharing (Echo Request - ICMPv4-In)" for the Private profile.

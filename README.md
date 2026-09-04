@@ -123,7 +123,7 @@ IP and checking whether any of the attempted accounts succeeded elsewhere.
 └── logs/
     ├── docker-ps-output.txt
     ├── cluster-health.txt
-    ├── nmap-scan-output.txt
+    ├── nmap-scan-output.txtb
     ├── hydra-output.txt
     └── sample-events.ndjson
 ```
