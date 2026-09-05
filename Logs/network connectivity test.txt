@@ -1,0 +1,36 @@
+┌──(estelle㉿hostname)-[~]
+└─$ ping -c 4 192.168.218.128 #Windows victim
+PING 192.168.218.128 (192.168.218.128) 56(84) bytes of data.
+64 bytes from 192.168.218.128: icmp_seq=1 ttl=128 time=1.04 ms
+64 bytes from 192.168.218.128: icmp_seq=2 ttl=128 time=1.72 ms
+64 bytes from 192.168.218.128: icmp_seq=3 ttl=128 time=1.33 ms
+64 bytes from 192.168.218.128: icmp_seq=4 ttl=128 time=1.41 ms
+
+--- 192.168.218.128 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3006ms
+rtt min/avg/max/mdev = 1.042/1.374/1.719/0.241 ms
+                                                                                      
+┌──(estelle㉿hostname)-[~]
+└─$ ping -c 4 192.168.218.132 #Elk server    
+PING 192.168.218.132 (192.168.218.132) 56(84) bytes of data.
+64 bytes from 192.168.218.132: icmp_seq=1 ttl=64 time=1.19 ms
+64 bytes from 192.168.218.132: icmp_seq=2 ttl=64 time=1.65 ms
+64 bytes from 192.168.218.132: icmp_seq=3 ttl=64 time=1.65 ms
+64 bytes from 192.168.218.132: icmp_seq=4 ttl=64 time=1.36 ms
+
+--- 192.168.218.132 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3006ms
+rtt min/avg/max/mdev = 1.192/1.462/1.648/0.194 ms
+                                                                                       
+┌──(estelle㉿hostname)-[~]
+└─$ ping -c 4 192.168.218.131 #Ubuntu server
+PING 192.168.218.131 (192.168.218.131) 56(84) bytes of data.
+64 bytes from 192.168.218.131: icmp_seq=1 ttl=64 time=0.940 ms
+64 bytes from 192.168.218.131: icmp_seq=2 ttl=64 time=0.943 ms
+64 bytes from 192.168.218.131: icmp_seq=3 ttl=64 time=1.42 ms
+64 bytes from 192.168.218.131: icmp_seq=4 ttl=64 time=2.31 ms
+
+--- 192.168.218.131 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+rtt min/avg/max/mdev = 0.940/1.402/2.311/0.559 ms
+

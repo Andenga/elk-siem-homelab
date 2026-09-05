@@ -101,7 +101,7 @@ Kali linux : 192.168.218.129
 Ubuntu server : 192.168.218.131
 
 ping -c 4 192.168.218.131 #Ubuntu server
-ping -c 4 192.168.57.133 #Elk server
+ping -c 4 192.168.218.132 #Elk server
 ping -c 4 192.168.218.128 #Windows victim
 ```
 
