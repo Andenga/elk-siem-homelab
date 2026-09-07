@@ -26,8 +26,8 @@ Kibana search password : c3VTBsatoIamIEnzjPlU
 
 1. COnfirming connectivity
     ping -c 4 192.168.218.134   # ELK server 
-    ping -c 4 192.168.218.128   # Windows victim
-    ping -c 4 192.168.218.131   # Linux victim/Ubuntu Server
+    ping -c 4 192.168.218.135   # Windows victim
+    ping -c 4 192.168.218.136   # Linux victim/Ubuntu Server
 
 2. Elk server terminal connection (The below tasks are done in ELK server)
     Connecting ubuntu server to my local terminal using ssh
@@ -46,13 +46,19 @@ Kibana search password : c3VTBsatoIamIEnzjPlU
 
 6. Open Kibana at http://192.168.218.134:5601 and log in as elastic.
 
-7. 
+**In the Windows Machine**
 
-8. 
+7.  Equally connect windows to the internet and add another netword for the selected Host-only option earlier.
+    - Run powershell as administrator
 
-9. 
+8. Start winlogbeat 
+    - Start-Service winlogbeat
 
-10. 
+9. Verify winlogbeat is working
+    - Get-Service winlogbeat
+
+10. Open Kibana at http://192.168.218.134:5601 and log in as elastic.
+    - You can view the winlogbeat logs here.
 
 11. 
 
