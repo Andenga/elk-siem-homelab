@@ -11,6 +11,30 @@
 
     Once connected, you can use your local terminal to copy commands and they will get implemented in your VM ware ubuntu's server.
 
+2. Kibana not displaying logs
+    - Make sure all the machines in VM ware are on the same subnet. If they are not, reconfigure your       network to ensure they are in the same Host-only network and if you are using two networks, make sure the added one is in customized to the right VMnet network.
+
+    - After checking the internet configurations and making sure that you are using the right password accross all the VM servers, you can check to see if winlog can reach the network pipelin
+    .\winlogbeat.exe test output
+
+    The output should look something like this
+    
+
+```python
+            elasticsearch: http://192.168.218.134:9200...
+            parse url... OK
+            connection...
+                parse host... OK
+                dns lookup... OK
+                addresses: 192.168.218.134
+                dial up... OK
+            TLS... WARN secure connection disabled
+            talk to server... OK
+            version: 8.15.0
+```
+
+*****************************************8
+
     192.168.57.133
 
     ssh username@ip_address
@@ -28,8 +52,11 @@ Kibana search password : c3VTBsatoIamIEnzjPlU
     ping -c 4 192.168.218.134   # ELK server 
     ping -c 4 192.168.218.135   # Windows victim
     ping -c 4 192.168.218.136   # Linux victim/Ubuntu Server
+    ping -c 4 192.168.218.137   # Kali linux
 
-2. Elk server terminal connection (The below tasks are done in ELK server)
+**The below tasks are done in ELK server
+**
+2. Elk server terminal connection 
     Connecting ubuntu server to my local terminal using ssh
     ssh elk@192.168.57.133
 
@@ -59,6 +86,12 @@ Kibana search password : c3VTBsatoIamIEnzjPlU
 
 10. Open Kibana at http://192.168.218.134:5601 and log in as elastic.
     - You can view the winlogbeat logs here.
+
+    - If it fails start by checking connection
+    Test-NetConnection -ComputerName 192.168.218.134 -Port 9200
+
+
+**Linux victim **
 
 11. 
 
