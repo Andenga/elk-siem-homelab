@@ -91,13 +91,27 @@ Kibana search password : c3VTBsatoIamIEnzjPlU
     Test-NetConnection -ComputerName 192.168.218.134 -Port 9200
 
 
-**Linux victim **
+11. Load atomic redteam.
+     Import-Module "C:\AtomicRedTeam\invoke-atomicredteam\Invoke-AtomicRedTeam.psd1" -Force
 
-11. 
-
-12. 
+12. Test that the ID's are identified.
+    Invoke-AtomicTest T1059.001 -ShowDetailsBrief
 
 13. 
+    Endpoint Protection Block (Tests 1, 3, 4, 5): Windows Defender or another Anti-Malware solution (AMSI) actively blocked the execution of known hacking tools (like Mimikatz).
+    
+    Missing Dependencies (Test 2): The required hacking tool (BloodHound/SharpHound) was not downloaded or installed on the system prior to running the test.
+
+
+    Test 1 (Mimikatz): Still throws Exception calling "Start" with "0" argument(s): "Access is denied".Why? Mimikatz is one of the most heavily signature-blocked tools in existence. Even if you turned off Real-Time protection, Windows Defender has a hardcoded, un-bypassable engine feature called AMSI (Antimalware Scan Interface) or Tamper Protection that blocks any memory string containing the word "Mimikatz".
+    
+    Test 12 (PSRemoting): Says PSRemoting must be enabled.Why? This test simulates remote execution, which requires Windows PowerShell Remoting to be turned on locally.
+
+
+    Turn off Tamper Protection
+    
+
+
 
 14. 
 

