@@ -182,7 +182,36 @@ A short screen recording of one attack → detection flow end-to-end (e.g. the H
 
 ************************************
 
-MITRE ATT&CK technique T1547.001
+**MITRE ATT&CK technique T1059.001
+**
+
+
+ Consolidated Results
+Test	Behaviour	Result	Main interpretation
+T1059.001-1	Mimikatz	Failed	Missing dependency
+T1059.001-2	BloodHound from disk	Failed	No AD domain/forest context
+T1059.001-3	BloodHound from memory/download cradle	Failed	No AD domain/forest context
+T1059.001-4	Mimikatz/PsSendKeys	Failed/timeout	Missing registry artifact + timeout
+T1059.001-5	Invoke-AppPathBypass	Failed	Remote server returned 503
+T1059.001-6	MSXML download cradle	Successful	Test reported success
+T1059.001-7	XML requests	Failed	Command execution/format error
+T1059.001-8	mshta download	Successful	Exit code 0
+T1059.001-9	Not present	Unknown	No evidence in supplied log
+T1059.001-10	Fileless PowerShell	Successful	Operation completed
+T1059.001-11	NTFS ADS	Mixed/error	PowerShell parameter error
+T1059.001-12	PowerShell session	Denied	Access denied
+T1059.001-13	Command parameter variation	Successful	TestSuccess=True
+T1059.001-14	Encoded arguments	Successful	TestSuccess=True
+T1059.001-15	EncodedCommand	Successful	TestSuccess=True
+T1059.001-16	Encoded command + arguments	Successful	TestSuccess=True
+T1059.001-17	PowerShell command	Successful	Command executed
+T1059.001-18	Suspicious cmdlet simulation	Successful	Simulated/pretend invocation
+T1059.001-19	PowerUp checks	Failed/timeout	Timed out
+T1059.001-20	nslookup/DNS	Successful	Exit code 0
+T1059.001-21	SOAPHound dump	Prerequisites missing	Domain/cache unavailable
+T1059.001-22	SOAPHound cache	Prerequisites missing	Domain unavailable
+
+
 
 
 
@@ -214,3 +243,12 @@ RDP logon persistence	Successful
 Boot Verification Program	Timed out / interactive prompt
 Context Menu persistence	Successful
 Turla Mosquito technique	Successful
+
+
+
+
+
+**MITRE ATT&CK technique T1003.001
+**
+
+
