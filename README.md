@@ -175,3 +175,42 @@ A short screen recording of one attack → detection flow end-to-end (e.g. the H
 
 
 *Built as a personal project to gain hands-on detection engineering experience.*
+
+
+
+
+
+************************************
+
+MITRE ATT&CK technique T1547.001
+
+
+
+
+**MITRE ATT&CK technique T1547.001
+**
+So what does your entire output tell you?
+
+A simplified interpretation is:
+
+Area	Result
+Registry Run	Successful
+Registry RunOnce	Timed out / interactive prompt
+PowerShell RunOnce	Successful
+VBS Startup	Successful
+JSE Startup	Successful
+BAT Startup	Successful
+Startup shortcut	Successful
+Recycle Bin persistence	Successful
+SystemBC registry persistence	Successful
+HKLM startup modification	Completed, with non-fatal directory-exists message
+HKCU startup modification	Completed, with non-fatal directory-exists message
+Policy Explorer Run keys	Successful
+Winlogon Userinit	Successful
+Winlogon Shell	Successful
+secedit Run key	Successful
+BootExecute	Successful
+RDP logon persistence	Successful
+Boot Verification Program	Timed out / interactive prompt
+Context Menu persistence	Successful
+Turla Mosquito technique	Successful
