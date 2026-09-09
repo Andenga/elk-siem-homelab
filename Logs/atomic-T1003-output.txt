@@ -1,0 +1,45 @@
+PS C:\WINDOWS\system32> Invoke-AtomicTest T1003
+PathToAtomicsFolder = C:\AtomicRedTeam\atomics
+                                                                                                                                                               Executing test: T1003-1 Gsecdump                                                                                                                               'C:\AtomicRedTeam\atomics\..\ExternalPayloads\gsecdump.exe' is not recognized as an internal or external command,                                              operable program or batch file.                                                                                                                                Exit code: 1                                                                                                                                                   Done executing test: T1003-1 Gsecdump
+Executing test: T1003-2 Credential Dumping with NPPSpy
+[!] Please, logout and log back in. Cleartext password for this account is going to be located in C:\NPPSpy.txt
+Copy-Item : Cannot find path 'C:\AtomicRedTeam\ExternalPayloads\NPPSPY.dll' because it does not exist.
+At line:1 char:4
++ & {Copy-Item "C:\AtomicRedTeam\atomics\..\ExternalPayloads\NPPSPY.dll ...
++    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\AtomicRedTea...oads\NPPSPY.dll:String) [Copy-Item], ItemNotFoundExce
+   ption
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.CopyItemCommand
+Exit code: 0                                                                                                                                                   Done executing test: T1003-2 Credential Dumping with NPPSpy                                                                                                    Executing test: T1003-3 Dump svchost.exe to gather RDP credentials                                                                                             Exit code: 0                                                                                                                                                   Done executing test: T1003-3 Dump svchost.exe to gather RDP credentials                                                                                        Executing test: T1003-4 Retrieve Microsoft IIS Service Account Credentials Using AppCmd (using list)                                                           C:\Windows\System32\inetsrv\appcmd.exe : The term 'C:\Windows\System32\inetsrv\appcmd.exe' is not recognized as the                                            name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was                                                 included, verify that the path is correct and try again.                                                                                                       At line:1 char:4
++ & {C:\Windows\System32\inetsrv\appcmd.exe list apppool /@t:*
++    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Windows\System32\inetsrv\appcmd.exe:String) [], CommandNotFoundExcep                                            tion                                                                                                                                                            + FullyQualifiedErrorId : CommandNotFoundException                                                                                                                                                                                                                                                                        C:\Windows\System32\inetsrv\appcmd.exe : The term 'C:\Windows\System32\inetsrv\appcmd.exe' is not recognized as the                                            name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was                                                 included, verify that the path is correct and try again.                                                                                                       At line:2 char:1                                                                                                                                               + C:\Windows\System32\inetsrv\appcmd.exe list apppool /@text:*                                                                                                 + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                                                                                                           + CategoryInfo          : ObjectNotFound: (C:\Windows\System32\inetsrv\appcmd.exe:String) [], CommandNotFoundExcep                                            tion                                                                                                                                                            + FullyQualifiedErrorId : CommandNotFoundException                                                                                                                                                                                                                                                                        C:\Windows\System32\inetsrv\appcmd.exe : The term 'C:\Windows\System32\inetsrv\appcmd.exe' is not recognized as the
+name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was
+included, verify that the path is correct and try again.
+At line:3 char:1
++ C:\Windows\System32\inetsrv\appcmd.exe list apppool /text:*}
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Windows\System32\inetsrv\appcmd.exe:String) [], CommandNotFoundExcep
+   tion
+    + FullyQualifiedErrorId : CommandNotFoundException
+Exit code: 0
+Done executing test: T1003-4 Retrieve Microsoft IIS Service Account Credentials Using AppCmd (using list)
+Executing test: T1003-5 Retrieve Microsoft IIS Service Account Credentials Using AppCmd (using config)
+C:\Windows\System32\inetsrv\appcmd.exe : The term 'C:\Windows\System32\inetsrv\appcmd.exe' is not recognized as the
+name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was
+included, verify that the path is correct and try again.
+At line:1 char:4
++ & {C:\Windows\System32\inetsrv\appcmd.exe list apppool /config}
++    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Windows\System32\inetsrv\appcmd.exe:String) [], CommandNotFoundExcep
+   tion
+    + FullyQualifiedErrorId : CommandNotFoundException
+Exit code: 0
+Done executing test: T1003-5 Retrieve Microsoft IIS Service Account Credentials Using AppCmd (using config)
+Executing test: T1003-6 Dump Credential Manager using keymgr.dll and rundll32.exe
+Exit code: 0
+Done executing test: T1003-6 Dump Credential Manager using keymgr.dll and rundll32.exe
+Executing test: T1003-7 Send NTLM Hash with RPC Test Connection
+Exit code: 0
+Done executing test: T1003-7 Send NTLM Hash with RPC Test Connection
+PS C:\WINDOWS\system32>
