@@ -109,11 +109,15 @@ Kibana search password : c3VTBsatoIamIEnzjPlU
 
 
     Turn off Tamper Protection
-    
 
 
 
-14. 
+
+14. Generate attack data
+    Invoke-AtomicTest T1059.001
+    Invoke-AtomicTest T1547.001
+    Invoke-AtomicTest T1003
+
 
 15. 
 
