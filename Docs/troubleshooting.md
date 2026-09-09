@@ -119,7 +119,81 @@ Kibana search password : c3VTBsatoIamIEnzjPlU
     Invoke-AtomicTest T1003
 
 
-15. 
+15.  Real attack traffic from Kali against both victims
+    - nmap -sV 192.168.218.135 192.168.218.136      # T1046 — network service discovery
+
+        Try this if the ports are blocked by windows defender or linux 
+        sudo nmap -Pn -p 3389 192.168.218.135 192.168.218.136
+
+
+    - hydra -l administrator -P rockyou.txt rdp://192.168.218.135   # T1110 — brute force (your own lab only)
+
+        Modified the command 
+
+        hydra -l administrator -P /usr/share/wordlists/rockyou.txt -t 1 -W 10 rdp://192.168.218.135 # T1110
+
+        -t 1 -W 3: This forces Hydra to try only 1 password every 3 seconds. Since your target is a Windows machine, if you do not use these slow settings, the Windows RDP service will instantly lock up, block you, or crash, giving you the freerdp: The connection failed to establish error again.
+
+        - Windows has an Account Lockout Policy and network throttling mechanisms built into its RDP service.
+
+            **********************
+
+        The persistent [ERROR] all children were disabled due too many connection errors right at the start of a fresh command means the Windows RDP service has completely locked you out or stopped responding to port 3389.
+        When Hydra crashes a service or triggers Windows security protections, the target host stops accepting any new connections on that port until it is reset.
+        You must clear the existing corrupted session state and fix the Windows side to get this working.
+
+        ***************
+
+16. COnfirm suricata is installed and check it's version
+    suricata --build-info | head -20
+    suricata -V
+    
+17. Back up the config first
+    sudo cp /etc/suricata/suricata.yaml /etc/suricata/suricata.yaml.bak
+
+
+18. Test the config for syntax errors before running for real
+    sudo suricata -T -c /etc/suricata/suricata.yaml -v
+
+19. Start Suricata      
+    sudo systemctl enable suricata
+    sudo systemctl start suricata
+    sudo systemctl status suricata
+
+20. 
+    From Kali, generate some traffic:
+
+    
+    ping 192.168.75.140 -c 4
+
+    Back on ELK-Server, watch the log grow live:
+
+    
+    sudo tail -f /var/log/suricata/eve.json
+
+    You should see JSON lines streaming in (likely event_type":"flow" or similar for the ping). If you see nothing at all, that's the promiscuous-mode / network-visibility issue
+
+21. It's best practice to use a virtual environment so this doesn't clash with your system Python packages:
+
+    
+    python3 -m venv ~/sigma-venv
+    source ~/sigma-venv/bin/activate
+
+You'll need to run that source command again every time you open a new terminal and want to use sigma-cli.
+
+The below commands happen in the virtual env
+
+22. COnfirm sigma-cli is installed
+    sigma version
+
+23. 
+    
+
+
+24. 
+
+
+25. 
 
 
 
