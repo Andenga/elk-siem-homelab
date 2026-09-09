@@ -251,4 +251,14 @@ Turla Mosquito technique	Successful
 **MITRE ATT&CK technique T1003.001
 **
 
+Here is the most useful summary of your actual output.
+
+Test	Intended behavior	Your result	Interpretation
+T1003-1	Gsecdump credential extraction	Exit 1	Failed — executable missing
+T1003-2	NPPSpy credential capture	Exit 0 but DLL missing	Not demonstrated; dependency failure
+T1003-3	svchost memory dump / RDP credentials	Exit 0	Framework reports completion; verify artifact/telemetry
+T1003-4	IIS AppCmd credential retrieval	Exit 0 but AppCmd missing	Not demonstrated
+T1003-5	IIS configuration credential retrieval	Exit 0 but AppCmd missing	Not demonstrated
+T1003-6	Credential Manager test	Exit 0	Framework reports completion; verify actual behavior
+T1003-7	NTLM/RPC authentication test	Exit 0	Framework reports completion; verify telemetry
 
