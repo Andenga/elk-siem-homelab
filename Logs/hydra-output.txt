@@ -26,3 +26,19 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-09-09 13:39:
 0 of 1 target completed, 0 valid password found
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-09-09 13:40:10
 
+Third attempt
+Hydra v9.7 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-09-09 14:13:39
+[WARNING] the rdp module is experimental. Please test, report - and if possible, fix.
+[DATA] max 1 task per 1 server, overall 1 task, 14344399 login tries (l:1/p:14344399), ~14344399 tries per task
+[DATA] attacking rdp://192.168.218.135:3389/
+[STATUS] 4.00 tries/min, 4 tries in 00:01h, 14344395 to do in 59768:19h, 1 active
+[STATUS] 3.33 tries/min, 10 tries in 00:03h, 14344389 to do in 71721:57h, 1 active
+[ERROR] all children were disabled due too many connection errors
+0 of 1 target completed, 0 valid password found
+[INFO] Writing restore file because 2 server scans could not be completed
+The session file ./hydra.restore was written. Type "hydra -R" to resume session.
+[ERROR] 1 target was disabled because of too many errors
+[ERROR] 1 targets did not complete
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-09-09 14:17:09
