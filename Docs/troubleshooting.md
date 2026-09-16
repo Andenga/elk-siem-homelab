@@ -33,71 +33,9 @@
             version: 8.15.0
 ```
 
-*****************************************8
-
-    192.168.57.133
-
-    ssh username@ip_address
-
-
-
-Elastic search password : E0Xv1ALLwvBQaWJIWCdF
-Kibana search password : c3VTBsatoIamIEnzjPlU
- 
- curl -u elastic:E0Xv1ALLwvBQaWJIWCdF http://localhost:9200/_cluster/health?pretty
-
-**Major Steps**
-
-1. COnfirming connectivity
-    ping -c 4 192.168.218.134   # ELK server 
-    ping -c 4 192.168.218.135   # Windows victim
-    ping -c 4 192.168.218.136   # Linux victim/Ubuntu Server
-    ping -c 4 192.168.218.137   # Kali linux
-
-**The below tasks are done in ELK server
-**
-2. Elk server terminal connection 
-    Connecting ubuntu server to my local terminal using ssh
-    ssh elk@192.168.57.133
-
-3. Testing docker 
-    docker run hello-world
-
-4. Start docker compose
-    docker compose up -d
-
-5. Verify elastic is up and running 
-     curl -u elastic:E0Xv1ALLwvBQaWJIWCdF http://localhost:9200/_cluster/health?pretty
-
-    "status": "green" or "yellow" are both fine on a single node.
-
-6. Open Kibana at http://192.168.218.134:5601 and log in as elastic.
-
-**In the Windows Machine**
-
-7.  Equally connect windows to the internet and add another netword for the selected Host-only option earlier.
-    - Run powershell as administrator
-
-8. Start winlogbeat 
-    - Start-Service winlogbeat
-
-9. Verify winlogbeat is working
-    - Get-Service winlogbeat
-
-10. Open Kibana at http://192.168.218.134:5601 and log in as elastic.
-    - You can view the winlogbeat logs here.
-
-    - If it fails start by checking connection
-    Test-NetConnection -ComputerName 192.168.218.134 -Port 9200
-
-
-11. Load atomic redteam.
-     Import-Module "C:\AtomicRedTeam\invoke-atomicredteam\Invoke-AtomicRedTeam.psd1" -Force
-
-12. Test that the ID's are identified.
-    Invoke-AtomicTest T1059.001 -ShowDetailsBrief
-
-13. 
+3. No rules option in Kibana.
+    
+4. Windows blocking mitre attack tests
     Endpoint Protection Block (Tests 1, 3, 4, 5): Windows Defender or another Anti-Malware solution (AMSI) actively blocked the execution of known hacking tools (like Mimikatz).
     
     Missing Dependencies (Test 2): The required hacking tool (BloodHound/SharpHound) was not downloaded or installed on the system prior to running the test.
@@ -111,92 +49,53 @@ Kibana search password : c3VTBsatoIamIEnzjPlU
     Turn off Tamper Protection
 
 
-
-
-14. Generate attack data
-    Invoke-AtomicTest T1059.001
-    Invoke-AtomicTest T1547.001
-    Invoke-AtomicTest T1003
-
-
-15.  Real attack traffic from Kali against both victims
-    - nmap -sV 192.168.218.135 192.168.218.136      # T1046 — network service discovery
-
-        Try this if the ports are blocked by windows defender or linux 
-        sudo nmap -Pn -p 3389 192.168.218.135 192.168.218.136
-
-
-    - hydra -l administrator -P rockyou.txt rdp://192.168.218.135   # T1110 — brute force (your own lab only)
-
-        Modified the command 
-
-        hydra -l administrator -P /usr/share/wordlists/rockyou.txt -t 1 -W 10 rdp://192.168.218.135 # T1110
+5.       hydra -l administrator -P /usr/share/wordlists/rockyou.txt -t 1 -W 10 rdp://192.168.218.135 # T1110
 
         -t 1 -W 3: This forces Hydra to try only 1 password every 3 seconds. Since your target is a Windows machine, if you do not use these slow settings, the Windows RDP service will instantly lock up, block you, or crash, giving you the freerdp: The connection failed to establish error again.
 
         - Windows has an Account Lockout Policy and network throttling mechanisms built into its RDP service.
 
-            **********************
-
-        The persistent [ERROR] all children were disabled due too many connection errors right at the start of a fresh command means the Windows RDP service has completely locked you out or stopped responding to port 3389.
+                The persistent [ERROR] all children were disabled due too many connection errors right at the start of a fresh command means the Windows RDP service has completely locked you out or stopped responding to port 3389.
         When Hydra crashes a service or triggers Windows security protections, the target host stops accepting any new connections on that port until it is reset.
         You must clear the existing corrupted session state and fix the Windows side to get this working.
 
         ***************
 
-16. COnfirm suricata is installed and check it's version
-    suricata --build-info | head -20
-    suricata -V
+
+    6. Real attack traffic from Kali against both victims
+    - nmap -sV 192.168.218.135 192.168.218.136      # T1046 — network service discovery
+
+        Try this if the ports are blocked by windows defender or linux 
+        sudo nmap -Pn -p 3389 192.168.218.135 192.168.218.136
+
+    7. WHen you run this command 
+
+    elk@elk:~/elk-lab$ suricata --build-info | head -20
+This is Suricata version 8.0.3 RELEASE
+Features: NFQ PCAP_SET_BUFF AF_PACKET HAVE_PACKET_FANOUT LIBCAP_NG LIBNET1.1 HAVE_HTP_URI_NORMALIZE_HOOK PCRE_JIT HAVE_NSS HTTP2_DECOMPRESSION HAVE_LUA HAVE_JA3 HAVE_JA4 HAVE_LIBJANSSON TLS TLS_C11 MAGIC RUST POPCNT64
+SIMD support: SSE_4_2 SSE_4_1 SSE_3 SSE_2
+Atomic intrinsics: 1 2 4 8 16 byte(s)
+64-bits, Little-endian architecture
+GCC version 15.2.0, C version 201112
+compiled with _FORTIFY_SOURCE=2
+L1 cache line size (CLS)=64
+thread local storage method: _Thread_local
+compiled with LibHTP v8.0.3
+
+Suricata Configuration:
+  AF_PACKET support:                       yes
+  AF_XDP support:                          yes
+  DPDK support:                            yes
+  eBPF support:                            yes
+  XDP support:                             yes
+  PF_RING support:                         no
+  NFQueue support:                         yes
+  NFLOG support:                           yes
+elk@elk:~/elk-lab$
     
-17. Back up the config first
-    sudo cp /etc/suricata/suricata.yaml /etc/suricata/suricata.yaml.bak
+    No, you should not be concerned about PF_RING support: no in your Suricata build configuration.For the vast majority of deployments, AF_PACKET is the modern standard for high-performance packet capture on Linux. Because your output shows AF_PACKET support: yes, eBPF support: yes, and XDP support: yes, your system is fully equipped to handle high-speed traffic efficiently without needing PF_RING.
 
+8. Unable to see create rule option
+    When pressing manage rules, it redirects you to the alerts page.
 
-18. Test the config for syntax errors before running for real
-    sudo suricata -T -c /etc/suricata/suricata.yaml -v
-
-19. Start Suricata      
-    sudo systemctl enable suricata
-    sudo systemctl start suricata
-    sudo systemctl status suricata
-
-20. 
-    From Kali, generate some traffic:
-
-    
-    ping 192.168.75.140 -c 4
-
-    Back on ELK-Server, watch the log grow live:
-
-    
-    sudo tail -f /var/log/suricata/eve.json
-
-    You should see JSON lines streaming in (likely event_type":"flow" or similar for the ping). If you see nothing at all, that's the promiscuous-mode / network-visibility issue
-
-21. It's best practice to use a virtual environment so this doesn't clash with your system Python packages:
-
-    
-    python3 -m venv ~/sigma-venv
-    source ~/sigma-venv/bin/activate
-
-You'll need to run that source command again every time you open a new terminal and want to use sigma-cli.
-
-The below commands happen in the virtual env
-
-22. COnfirm sigma-cli is installed
-    sigma version
-
-23. 
-    
-
-
-24. 
-
-
-25. 
-
-
-
-
-
-
+9. 
