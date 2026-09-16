@@ -1,0 +1,349 @@
+{
+  "_index": ".ds-winlogbeat-9.5.3-2026.09.13-000001",
+  "_id": "zcFPm6ABKK1v7oVX2gZ7",
+  "_version": 1,
+  "_score": 0,
+  "_source": {
+    "agent": {
+      "name": "DESKTOP-0R0EQ17",
+      "id": "635ce67c-2d3c-4a1a-b1eb-af77fd4882d0",
+      "ephemeral_id": "8bc1c601-9ada-482f-ae8a-fb4d884f05f1",
+      "type": "winlogbeat",
+      "version": "9.5.3"
+    },
+    "process": {
+      "name": "OneDrive.Sync.Service.exe",
+      "pid": 12144,
+      "entity_id": "{39F2EE20-6A57-6AA6-3D01-000000001300}",
+      "executable": "C:\\Users\\Qween\\AppData\\Local\\Microsoft\\OneDrive\\26.163.0823.0004\\OneDrive.Sync.Service.exe"
+    },
+    "winlog": {
+      "record_id": "33018",
+      "computer_name": "DESKTOP-0R0EQ17",
+      "process": {
+        "pid": 3296,
+        "thread": {
+          "id": 5104
+        }
+      },
+      "task": "Network connection detected (rule: NetworkConnect)",
+      "event_id": "3",
+      "provider_guid": "{5770385F-C22A-43E0-BF4C-06F5698FFBD9}",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "provider_name": "Microsoft-Windows-Sysmon",
+      "opcode": "Info",
+      "version": 5,
+      "user": {
+        "identifier": "S-1-5-18",
+        "domain": "NT AUTHORITY",
+        "name": "SYSTEM",
+        "type": "User"
+      }
+    },
+    "log": {
+      "level": "information"
+    },
+    "destination": {
+      "port": 443,
+      "ip": "20.42.65.90"
+    },
+    "rule": {
+      "name": "Usermode"
+    },
+    "source": {
+      "port": 50622,
+      "ip": "192.168.57.131",
+      "domain": "DESKTOP-0R0EQ17.localdomain"
+    },
+    "message": "Network connection detected:\nRuleName: Usermode\nUtcTime: 2026-09-13 15:08:04.629\nProcessGuid: {39F2EE20-6A57-6AA6-3D01-000000001300}\nProcessId: 12144\nImage: C:\\Users\\Qween\\AppData\\Local\\Microsoft\\OneDrive\\26.163.0823.0004\\OneDrive.Sync.Service.exe\nUser: DESKTOP-0R0EQ17\\Qween\nProtocol: tcp\nInitiated: true\nSourceIsIpv6: false\nSourceIp: 192.168.57.131\nSourceHostname: DESKTOP-0R0EQ17.localdomain\nSourcePort: 50622\nSourcePortName: -\nDestinationIsIpv6: false\nDestinationIp: 20.42.65.90\nDestinationHostname: -\nDestinationPort: 443\nDestinationPortName: https",
+    "network": {
+      "protocol": "https",
+      "community_id": "1:ynk21YwO+o3LNOcWAVbmdxCBahM=",
+      "transport": "tcp",
+      "type": "ipv4",
+      "direction": "egress"
+    },
+    "@timestamp": "2026-09-13T15:08:04.629Z",
+    "ecs": {
+      "version": "8.17.0"
+    },
+    "related": {
+      "ip": [
+        "192.168.57.131",
+        "20.42.65.90"
+      ],
+      "user": [
+        "Qween"
+      ]
+    },
+    "host": {
+      "hostname": "DESKTOP-0R0EQ17",
+      "os": {
+        "build": "26200.9445",
+        "kernel": "10.0.26100.9444 (WinBuild.160101.0800)",
+        "name": "Windows 11 Enterprise Evaluation",
+        "family": "windows",
+        "type": "windows",
+        "version": "10.0",
+        "platform": "windows"
+      },
+      "ip": [
+        "fe80::7ade:6d0f:f034:d373",
+        "192.168.57.131",
+        "fe80::5eef:e64c:d19e:4e2d",
+        "192.168.218.135"
+      ],
+      "name": "desktop-0r0eq17",
+      "id": "39f2ee20-7495-4c70-a3c5-5f7d9ca0bb9d",
+      "mac": [
+        "00-0C-29-FA-E1-79",
+        "00-0C-29-FA-E1-83"
+      ],
+      "architecture": "x86_64"
+    },
+    "event": {
+      "ingested": "2026-09-13T15:08:16.887627459Z",
+      "code": "3",
+      "provider": "Microsoft-Windows-Sysmon",
+      "created": "2026-09-13T15:08:07.481Z",
+      "kind": "event",
+      "module": "sysmon",
+      "action": "Network connection",
+      "category": [
+        "network"
+      ],
+      "type": [
+        "start",
+        "connection",
+        "protocol"
+      ]
+    },
+    "user": {
+      "domain": "DESKTOP-0R0EQ17",
+      "name": "Qween",
+      "id": "S-1-5-18"
+    }
+  },
+  "fields": {
+    "event.category": [
+      "network"
+    ],
+    "process.name.text": [
+      "OneDrive.Sync.Service.exe"
+    ],
+    "host.os.name.text": [
+      "Windows 11 Enterprise Evaluation"
+    ],
+    "winlog.provider_guid": [
+      "{5770385F-C22A-43E0-BF4C-06F5698FFBD9}"
+    ],
+    "winlog.provider_name": [
+      "Microsoft-Windows-Sysmon"
+    ],
+    "host.hostname": [
+      "DESKTOP-0R0EQ17"
+    ],
+    "process.pid": [
+      12144
+    ],
+    "winlog.computer_name": [
+      "DESKTOP-0R0EQ17"
+    ],
+    "host.mac": [
+      "00-0C-29-FA-E1-79",
+      "00-0C-29-FA-E1-83"
+    ],
+    "winlog.process.pid": [
+      3296
+    ],
+    "host.os.version": [
+      "10.0"
+    ],
+    "winlog.record_id": [
+      "33018"
+    ],
+    "host.os.name": [
+      "Windows 11 Enterprise Evaluation"
+    ],
+    "log.level": [
+      "information"
+    ],
+    "source.ip": [
+      "192.168.57.131"
+    ],
+    "agent.name": [
+      "DESKTOP-0R0EQ17"
+    ],
+    "host.name": [
+      "desktop-0r0eq17"
+    ],
+    "network.community_id": [
+      "1:ynk21YwO+o3LNOcWAVbmdxCBahM="
+    ],
+    "event.kind": [
+      "event"
+    ],
+    "winlog.version": [
+      5
+    ],
+    "host.os.type": [
+      "windows"
+    ],
+    "rule.name": [
+      "Usermode"
+    ],
+    "user.id": [
+      "S-1-5-18"
+    ],
+    "agent.hostname": [
+      "DESKTOP-0R0EQ17"
+    ],
+    "related.user": [
+      "Qween"
+    ],
+    "host.architecture": [
+      "x86_64"
+    ],
+    "process.name": [
+      "OneDrive.Sync.Service.exe"
+    ],
+    "event.provider": [
+      "Microsoft-Windows-Sysmon"
+    ],
+    "event.code": [
+      "3"
+    ],
+    "agent.id": [
+      "635ce67c-2d3c-4a1a-b1eb-af77fd4882d0"
+    ],
+    "source.port": [
+      50622
+    ],
+    "ecs.version": [
+      "8.17.0"
+    ],
+    "event.created": [
+      "2026-09-13T15:08:07.481Z"
+    ],
+    "agent.version": [
+      "9.5.3"
+    ],
+    "host.os.family": [
+      "windows"
+    ],
+    "winlog.process.thread.id": [
+      5104
+    ],
+    "destination.port": [
+      443
+    ],
+    "user.name": [
+      "Qween"
+    ],
+    "source.domain": [
+      "DESKTOP-0R0EQ17.localdomain"
+    ],
+    "process.entity_id": [
+      "{39F2EE20-6A57-6AA6-3D01-000000001300}"
+    ],
+    "host.os.build": [
+      "26200.9445"
+    ],
+    "winlog.user.type": [
+      "User"
+    ],
+    "host.ip": [
+      "fe80::7ade:6d0f:f034:d373",
+      "192.168.57.131",
+      "fe80::5eef:e64c:d19e:4e2d",
+      "192.168.218.135"
+    ],
+    "agent.type": [
+      "winlogbeat"
+    ],
+    "process.executable.text": [
+      "C:\\Users\\Qween\\AppData\\Local\\Microsoft\\OneDrive\\26.163.0823.0004\\OneDrive.Sync.Service.exe"
+    ],
+    "event.module": [
+      "sysmon"
+    ],
+    "network.protocol": [
+      "https"
+    ],
+    "related.ip": [
+      "192.168.57.131",
+      "20.42.65.90"
+    ],
+    "host.os.kernel": [
+      "10.0.26100.9444 (WinBuild.160101.0800)"
+    ],
+    "network.direction": [
+      "egress"
+    ],
+    "user.domain": [
+      "DESKTOP-0R0EQ17"
+    ],
+    "host.id": [
+      "39f2ee20-7495-4c70-a3c5-5f7d9ca0bb9d"
+    ],
+    "network.type": [
+      "ipv4"
+    ],
+    "process.executable": [
+      "C:\\Users\\Qween\\AppData\\Local\\Microsoft\\OneDrive\\26.163.0823.0004\\OneDrive.Sync.Service.exe"
+    ],
+    "winlog.user.identifier": [
+      "S-1-5-18"
+    ],
+    "winlog.task": [
+      "Network connection detected (rule: NetworkConnect)"
+    ],
+    "winlog.user.domain": [
+      "NT AUTHORITY"
+    ],
+    "message": [
+      "Network connection detected:\nRuleName: Usermode\nUtcTime: 2026-09-13 15:08:04.629\nProcessGuid: {39F2EE20-6A57-6AA6-3D01-000000001300}\nProcessId: 12144\nImage: C:\\Users\\Qween\\AppData\\Local\\Microsoft\\OneDrive\\26.163.0823.0004\\OneDrive.Sync.Service.exe\nUser: DESKTOP-0R0EQ17\\Qween\nProtocol: tcp\nInitiated: true\nSourceIsIpv6: false\nSourceIp: 192.168.57.131\nSourceHostname: DESKTOP-0R0EQ17.localdomain\nSourcePort: 50622\nSourcePortName: -\nDestinationIsIpv6: false\nDestinationIp: 20.42.65.90\nDestinationHostname: -\nDestinationPort: 443\nDestinationPortName: https"
+    ],
+    "winlog.event_id": [
+      "3"
+    ],
+    "winlog.user.name": [
+      "SYSTEM"
+    ],
+    "destination.ip": [
+      "20.42.65.90"
+    ],
+    "network.transport": [
+      "tcp"
+    ],
+    "event.action": [
+      "Network connection"
+    ],
+    "event.ingested": [
+      "2026-09-13T15:08:16.887Z"
+    ],
+    "@timestamp": [
+      "2026-09-13T15:08:04.629Z"
+    ],
+    "winlog.channel": [
+      "Microsoft-Windows-Sysmon/Operational"
+    ],
+    "host.os.platform": [
+      "windows"
+    ],
+    "event.type": [
+      "start",
+      "connection",
+      "protocol"
+    ],
+    "winlog.opcode": [
+      "Info"
+    ],
+    "agent.ephemeral_id": [
+      "8bc1c601-9ada-482f-ae8a-fb4d884f05f1"
+    ],
+    "user.name.text": [
+      "Qween"
+    ]
+  }
+}
