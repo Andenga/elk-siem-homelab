@@ -1,88 +1,196 @@
-1. **Unable to copy/paste commands into ubuntu server**
+# Troubleshooting Log
 
-    Typing long commands into ubuntu server is a very tedious job and you are prone to making mistakes as you type, it is better to paste the long commands to save on time otherwise spent on debugging.
+Real problems hit while building this lab, and how each was actually
+resolved — not a generic checklist. Organized in the order they tend to
+come up as you work through the phases in `BUILD-LOG.md`.
 
-    I am therefore going to use my local terminal on my host machine by connecting it to the ubuntu server in my VM ware through ssh.
+---
 
-    I am going to get my ubuntu server's ip address while it is connected to the internet using NAT by using the command 
-    ip a
+## 1. Copy/pasting long commands into the Ubuntu Server VM is painful
+Ubuntu server does not allow copy pasting in it's terminal which can be very cumbersome when copying long texts, passwords, API keys or commands.
 
-    then on my local machine's terminal, I will ssh into it and accept the security prompt.
+**Symptom:** typing long `docker compose` / `curl` / config commands
+directly into the VMware console window is slow and error-prone — one typo
+in a 200-character command means starting over.
 
-    Once connected, you can use your local terminal to copy commands and they will get implemented in your VM ware ubuntu's server.
+**Fix:** don't type into the VM console at all. SSH into the Ubuntu VM from
+your host machine's own terminal instead, and copy/paste normally from
+there.
 
-2. Kibana not displaying logs
-    - Make sure all the machines in VM ware are on the same subnet. If they are not, reconfigure your       network to ensure they are in the same Host-only network and if you are using two networks, make sure the added one is in customized to the right VMnet network.
+1. From inside the VM console (just this once), get its IP while it has
+   internet access via NAT:
+   ```bash
+   ip a
+   ```
+2. From your **host machine's** terminal:
+   ```bash
+   ssh <user>@<vm-ip>
+   ```
+   Accept the host key prompt on first connect.
+3. From here on, paste commands into your host terminal as normal — they
+   run on the VM over the SSH session.
 
-    - After checking the internet configurations and making sure that you are using the right password accross all the VM servers, you can check to see if winlog can reach the network pipelin
-    .\winlogbeat.exe test output
+This applies to any Ubuntu-based VM in the lab (ELK-Server, Victim-Linux),
+not just one of them.
 
-    The output should look something like this
-    
+---
 
-```python
-            elasticsearch: http://192.168.218.134:9200...
-            parse url... OK
-            connection...
-                parse host... OK
-                dns lookup... OK
-                addresses: 192.168.218.134
-                dial up... OK
-            TLS... WARN secure connection disabled
-            talk to server... OK
-            version: 8.15.0
+## 2. Kibana shows no logs from Winlogbeat/Filebeat
+
+Work through these in order — each rules out one layer before moving to the
+next.
+
+**a. Confirm every VM is actually on the same network.**
+All VMs must sit on the *same* custom host-only network (e.g. the same
+VMnet), not a mix of host-only and NAT, and not two different host-only
+networks. If you added a second network adapter to any VM (for internet
+access during setup), double check its *other* adapter is still pointed at
+the correct lab VMnet — it's easy to leave a VM effectively split across two
+networks without noticing.
+
+**b. Confirm credentials match across every component.**
+The Elastic password used in `.env`, the one Winlogbeat/Filebeat
+authenticate with, and the one you log into Kibana with all have to be the
+same value. A mismatch here fails silently in some places and loudly in
+others — check all of them, not just one.
+
+**c. Test the beat's connection directly, independent of Kibana.**
+On the Windows victim:
+```powershell
+.\winlogbeat.exe test output
 ```
+A healthy result looks like:
+```
+elasticsearch: http://192.168.218.134:9200...
+  parse url... OK
+  connection...
+    parse host... OK
+    dns lookup... OK
+    addresses: 192.168.218.134
+    dial up... OK
+  TLS... WARN secure connection disabled
+  talk to server... OK
+  version: 8.15.0
+```
+The `TLS... WARN secure connection disabled` line is expected and fine in
+this lab (`xpack.security.http.ssl.enabled=false` in the Docker Compose
+config) — it is not the problem. If any line above that fails (DNS lookup,
+dial up, talk to server), the issue is network/reachability, not Kibana.
 
-3. No rules option in Kibana.
-    
-4. Windows blocking mitre attack tests
-    Endpoint Protection Block (Tests 1, 3, 4, 5): Windows Defender or another Anti-Malware solution (AMSI) actively blocked the execution of known hacking tools (like Mimikatz).
-    
-    Missing Dependencies (Test 2): The required hacking tool (BloodHound/SharpHound) was not downloaded or installed on the system prior to running the test.
+---
 
+## 3. No "Rules" option visible in Kibana Security
 
-    Test 1 (Mimikatz): Still throws Exception calling "Start" with "0" argument(s): "Access is denied".Why? Mimikatz is one of the most heavily signature-blocked tools in existence. Even if you turned off Real-Time protection, Windows Defender has a hardcoded, un-bypassable engine feature called AMSI (Antimalware Scan Interface) or Tamper Protection that blocks any memory string containing the word "Mimikatz".
-    
-    Test 12 (PSRemoting): Says PSRemoting must be enabled.Why? This test simulates remote execution, which requires Windows PowerShell Remoting to be turned on locally.
+Seen in early setup before the Security app is fully initialized, or when
+the logged-in user doesn't have sufficient privileges. Things to check:
+- Confirm you're logged in as the `elastic` superuser (or a role with
+  detection-engine privileges), not a lower-privileged account.
+- Give Kibana a few minutes after first startup — the Security/Detections
+  app needs its own indices initialized before "Rules" fully appears.
+- If it's still missing after that, navigate directly to
+  **Security → Alerts** once first (this can trigger the Detections app to
+  finish initializing) and then check **Manage rules** again.
 
+(See also item 8 below — a related but distinct symptom where "Manage
+rules" exists but misbehaves.)
 
-    Turn off Tamper Protection
+---
 
+## 4. Windows Defender / AMSI blocks Atomic Red Team tests
 
-5.       hydra -l administrator -P /usr/share/wordlists/rockyou.txt -t 1 -W 10 rdp://192.168.218.135 # T1110
+**Symptom:** several `T1059.001` sub-tests fail immediately with
+`Exception calling "Start" with "0" argument(s): "Access is denied"`.
 
-        -t 1 -W 3: This forces Hydra to try only 1 password every 3 seconds. Since your target is a Windows machine, if you do not use these slow settings, the Windows RDP service will instantly lock up, block you, or crash, giving you the freerdp: The connection failed to establish error again.
+**Root cause — this is not one problem, it's two different ones wearing the
+same error message:**
 
-        - Windows has an Account Lockout Policy and network throttling mechanisms built into its RDP service.
+- **Tests 1, 3, 4, 5 (Mimikatz and Mimikatz-adjacent tests):** actively
+  blocked by Windows Defender / AMSI (Antimalware Scan Interface). AMSI
+  scans in-memory strings and has a hardcoded, effectively un-bypassable
+  signature for anything containing `Mimikatz` — this is intentional and
+  extremely hard to defeat, by design. Turning off Defender's Real-Time
+  Protection **is not enough**; AMSI and Tamper Protection operate somewhat
+  independently.
+- **Test 2 (BloodHound/SharpHound):** fails for an unrelated reason — the
+  tool isn't downloaded/installed on the system yet. This is a missing
+  dependency, not a block.
+- **Test 12 (PowerShell Session Creation / PSRemoting):** fails with a
+  clear, different error (`Access is denied` when trying `New-PSSession`)
+  because **PowerShell Remoting isn't enabled locally**. This is a
+  Windows configuration prerequisite, not Defender.
 
-                The persistent [ERROR] all children were disabled due too many connection errors right at the start of a fresh command means the Windows RDP service has completely locked you out or stopped responding to port 3389.
-        When Hydra crashes a service or triggers Windows security protections, the target host stops accepting any new connections on that port until it is reset.
-        You must clear the existing corrupted session state and fix the Windows side to get this working.
+**What actually helped:** turning off **Tamper Protection**
+(Windows Security → Virus & threat protection → Manage settings → Tamper
+Protection → Off) unblocked some of these. Note this is a deliberate
+weakening of the endpoint for lab purposes — appropriate here because this
+is an isolated, disposable VM with no real data, but not something to do on
+a production machine.
 
-        ***************
+**Bigger picture takeaway (see also `BUILD-LOG.md` Phase 4/5):** rather than
+fighting AMSI/Defender indefinitely to force through heavily-signatured
+tools like Mimikatz, it's often more productive to pick a different, less
+heavily-blocked atomic test that still maps to a valid technique — this is
+what eventually led to switching the third detection to T1082 (System
+Information Discovery) instead of continuing to fight T1059.001's
+COM-object test.
 
+---
 
-    6. Real attack traffic from Kali against both victims
-    - nmap -sV 192.168.218.135 192.168.218.136      # T1046 — network service discovery
+## 5. Hydra locks itself out of Windows RDP
 
-        Try this if the ports are blocked by windows defender or linux 
-        sudo nmap -Pn -p 3389 192.168.218.135 192.168.218.136
+**Symptom:** `hydra ... rdp://<target>` works for a few attempts, then
+fails permanently with:
+```
+[ERROR] all children were disabled due too many connection errors
+```
+and the target stops responding to port 3389 entirely — including
+legitimate `freerdp` connections.
 
-    7. WHen you run this command 
+**Root cause:** Windows' built-in Account Lockout Policy and RDP-specific
+network throttling kick in almost immediately against a fast brute-force
+attempt. Once triggered, the RDP service refuses *all* new connections,
+not just further Hydra attempts, until the lockout state clears.
 
-    elk@elk:~/elk-lab$ suricata --build-info | head -20
-This is Suricata version 8.0.3 RELEASE
-Features: NFQ PCAP_SET_BUFF AF_PACKET HAVE_PACKET_FANOUT LIBCAP_NG LIBNET1.1 HAVE_HTP_URI_NORMALIZE_HOOK PCRE_JIT HAVE_NSS HTTP2_DECOMPRESSION HAVE_LUA HAVE_JA3 HAVE_JA4 HAVE_LIBJANSSON TLS TLS_C11 MAGIC RUST POPCNT64
-SIMD support: SSE_4_2 SSE_4_1 SSE_3 SSE_2
-Atomic intrinsics: 1 2 4 8 16 byte(s)
-64-bits, Little-endian architecture
-GCC version 15.2.0, C version 201112
-compiled with _FORTIFY_SOURCE=2
-L1 cache line size (CLS)=64
-thread local storage method: _Thread_local
-compiled with LibHTP v8.0.3
+**Fix — this is a Hydra-speed problem, not a Hydra-syntax problem:**
+```bash
+hydra -l administrator -P /usr/share/wordlists/rockyou.txt -t 1 -W 10 rdp://192.168.218.135
+```
+`-t 1` limits Hydra to a single connection thread; `-W 10` adds a wait
+between attempts (~1 attempt per 10 seconds). This keeps the attempt rate
+under whatever threshold triggers Windows' lockout/throttling, so the
+service stays responsive for the duration of the test.
+
+If you've already triggered the lockout before slowing down, slowing Hydra
+down alone won't immediately fix it — the existing locked/corrupted session
+state on the Windows side needs to clear (or be reset) before new
+connection attempts, from Hydra or anything else, will succeed again.
+
+---
+
+## 6. Nmap shows filtered/no results against the victims
+
+**Symptom:** `nmap -sV <target>` against the Windows or Linux victim
+returns little or nothing useful — ports appear filtered.
+
+**Fix:** Windows Defender Firewall and/or the Linux host firewall block
+ICMP and many scan probes by default. Force a specific-port scan without
+relying on host discovery:
+```bash
+sudo nmap -Pn -p 3389 192.168.218.135 192.168.218.136
+```
+`-Pn` skips the host-discovery ping (which is often what's actually being
+blocked) and scans the specified port(s) directly.
+
+---
+
+## 7. Suricata build shows `PF_RING support: no`
+
+**Symptom:** `suricata --build-info | head -20` shows most features enabled
+(`AF_PACKET`, `AF_XDP`, `DPDK`, `eBPF`, `XDP`, `NFQueue`, `NFLOG`) but
+`PF_RING support: no`.
 
 Suricata Configuration:
+
   AF_PACKET support:                       yes
   AF_XDP support:                          yes
   DPDK support:                            yes
@@ -91,11 +199,38 @@ Suricata Configuration:
   PF_RING support:                         no
   NFQueue support:                         yes
   NFLOG support:                           yes
-elk@elk:~/elk-lab$
-    
-    No, you should not be concerned about PF_RING support: no in your Suricata build configuration.For the vast majority of deployments, AF_PACKET is the modern standard for high-performance packet capture on Linux. Because your output shows AF_PACKET support: yes, eBPF support: yes, and XDP support: yes, your system is fully equipped to handle high-speed traffic efficiently without needing PF_RING.
 
-8. Unable to see create rule option
-    When pressing manage rules, it redirects you to the alerts page.
+**This is not a problem.** PF_RING is one specific high-performance packet
+capture method among several, and it requires a separately-installed
+kernel module that most Suricata builds don't ship with by default. Since
+the build already shows `AF_PACKET support: yes` (the modern standard for
+high-performance Linux packet capture) along with `eBPF` and `XDP` support,
+the system is fully capable of handling this lab's traffic without PF_RING.
+No action needed — move on to config validation and starting the service.
 
-9. 
+---
+
+## 8. "Manage rules" redirects to the Alerts page instead of showing rule management
+
+**Symptom:** clicking **Manage rules** in Kibana Security doesn't open the
+rule list/creation UI — it redirects to **Alerts** instead.
+
+This is a related-but-distinct symptom from item 3 (no Rules option at
+all) — here the navigation exists but resolves to the wrong place. Likely
+causes to check, in order:
+- The Detections engine hasn't been "turned on" yet for this space — some
+  Kibana versions require visiting **Security → Alerts** at least once, or
+  explicitly enabling detection rules from a first-run prompt, before
+  **Manage rules** resolves correctly.
+- Insufficient privileges on the logged-in user/role for rule management
+  specifically (distinct from general Kibana access) — confirm you're using
+  the `elastic` superuser while diagnosing, then narrow down role
+  permissions afterward if needed.
+- A stale browser session/cache after a Kibana restart — log out, close the
+  tab, and log back in fresh before assuming this is a deeper bug.
+
+---
+
+*Cross-reference: the step-by-step context each of these problems came up
+in — including which phase, which VM, and what got tried immediately
+before/after — is in [`BUILD-LOG.md`](./BUILD-LOG.md).*
