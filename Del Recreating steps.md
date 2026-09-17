@@ -74,12 +74,27 @@ Kibana search password : bo=p00Y-tULgrOQKtXSX
 
 
 13. 
-
+ 
 
 14. Generate attack data
+
     Invoke-AtomicTest T1059.001
+
+    To confirm Kibana actually logs this filter with 
+    process.name : "powershell.exe" AND event.code : "1"
+    Expand one of the boxes and search for process.command_line to see if you will see the log.
+
+
     Invoke-AtomicTest T1547.001
+    To confirm Kibana actually logs this filter with 
+    process.name : "powershell.exe" AND event.code : "1"
+    Expand one of the boxes and search for process.command_line to see if you will see the log.
+
+
     Invoke-AtomicTest T1003
+
+
+    Invoke-AtomicTest T1082 -TestNumbers 1
 
 
 15.  Real attack traffic from Kali against both victims
