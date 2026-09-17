@@ -279,7 +279,7 @@ Install-AtomicRedTeam -getAtomics
 | Command and Scripting Interpreter | T1059 | `Invoke-AtomicTest T1059.001` |
 | Boot/Logon Autostart Execution | T1547 | `Invoke-AtomicTest T1547.001` |
 | OS Credential Dumping (stretch) | T1003 | `Invoke-AtomicTest T1003` |
-
+ 
 > 📝 Save the PowerShell output for each run → `logs/atomic-<technique-id>-output.txt`.
 
 ### 4b. Real attack traffic from Kali
