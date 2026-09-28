@@ -1,15 +1,18 @@
 # ELK SIEM Homelab — Build Log
 
-This is a running log of the steps I executed, in order, including the
-real values, commands, and problems I hit along the way. Screenshots and raw
+This is a running log of the steps I executed, in order, including the values, commands, and problems I hit along the way. Screenshots and raw
 log files referenced here live in `screenshots/` and `logs/`.
+
+Here is a walkthrough of my project:
+
+https://youtu.be/vcyImooMafg
 
 All tools used in this project are free or have a free trial.
 
 > **Note on secrets:** For security reasons I removes passwords, API keys and any PII infomation.
 
 > Problems hit along the way, and how each was actually resolved, are
-> written up in full in [`TROUBLESHOOTING.md`](Docs\Troubleshooting.md) 
+> written up in full in [`TROUBLESHOOTING.md`](\Troubleshooting.md) 
 ---
 
 ## Phase 1 — My Infrastructure
@@ -94,11 +97,29 @@ Opened `http://192.168.218.134:5601` and logged in as `elastic`.
 
 ---
 
-## Phase 3 — Log Ingestion (Windows)
+
+## Phase 3 Linux victim — Auditd + Filebeat
+On **Victim-Linux**:
+```bash
+sudo apt update && sudo apt install -y auditd audispd-plugins
+sudo systemctl enable --now auditd
+```
+Install Filebeat (matching version):
+```bash
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.15.0-amd64.deb
+sudo dpkg -i filebeat-8.15.0-amd64.deb
+```
+Edit `/etc/filebeat/filebeat.yml` to point `output.elasticsearch.hosts` at `["192.168.75.130:9200"]` with your credentials, and enable the `audit` module:
+```bash
+sudo filebeat modules enable auditd
+sudo systemctl enable --now filebeat
+```
+
+## Phase 4 — Log Ingestion (Windows)
 
 Run **PowerShell as Administrator** on Victim-Windows.
 
-### 3.1 Confirm outbound connectivity to ELK-Server
+### 4.1 Confirm outbound connectivity to ELK-Server
 
 If Kibana  fails start by checking connection using powershell.
 
@@ -109,7 +130,7 @@ Test-NetConnection -ComputerName 192.168.218.134 -Port 9200
 
 => Make sure this is true before continuing.
 
-### 3.2 Start Winlogbeat
+### 4.2 Start Winlogbeat
 ```powershell
 Start-Service winlogbeat
 Get-Service winlogbeat   # confirm status = Running
@@ -117,7 +138,7 @@ Get-Service winlogbeat   # confirm status = Running
 
 📸 [`Screenshots/Winlogbeat running status.png`](./Screenshots/Winlogbeat%20running%20status.png)
 
-### 3.3 Confirm data is flowing
+### 4.3 Confirm data is flowing
 Back in Kibana Discover, selected the Winlogbeat data view and confirmed
 recent Sysmon/Security events were arriving. 
 
@@ -127,9 +148,9 @@ Even without running any commands, there should be data logs being displayed reg
 
 ---
 
-## Phase 4 — Atomic Red Team Setup and Recon
+## Phase 5 — Atomic Red Team Setup and Recon
 
-### 4.1 Confirm the Atomic Red Team test catalog is installed
+### 5.1 Confirm the Atomic Red Team test catalog is installed
 ```powershell
 Invoke-AtomicTest T1059.001 -ShowDetailsBrief
 ```
@@ -148,7 +169,7 @@ These are the attacks I am going to tinker with
 | System Information Discovery | T1082 | `Invoke-AtomicTest T1082` |
 
 
-### 4.2 Generate attack data
+### 5.2 Generate attack data
 ```powershell
 Invoke-AtomicTest T1059.001
 Invoke-AtomicTest T1547.001
@@ -169,7 +190,7 @@ Invoke-AtomicTest T1082
 You can view the summary of my outputs in tables here [Atomic Tests Output summary](./Logs/Atomic-tests%20summary.md)
 
 
-### 4.3 Real attack traffic from Kali
+### 5.3 Real attack traffic from Kali
 Ran this commands on Kali Linux machine.
 
 ```bash
@@ -196,9 +217,9 @@ until reset — the fix isn't a Hydra flag, it's clearing the lockout state on
 the Windows side. `-t 1 -W 10` (one attempt every ~10 seconds) avoids
 triggering it in the first place.
 
----
+--- 
 
-## Phase 4.5 — Network Monitoring (Suricata)
+## Phase 5.5 — Network Monitoring (Suricata)
 
 All on **ELK-Server**.
 
@@ -233,7 +254,9 @@ Expected: `Active: active (running)`.
 ### Verify Suricata sees traffic
 From Kali:
 ```bash
-ping 192.168.218.135 -c 4
+ping 192.168.218.135 -c 4 #Windows
+ping 192.168.218.136 -c 4 #Linux Victim
+
 ```
 On ELK-Server, watch the log grow live:
 
@@ -248,9 +271,9 @@ that can't see traffic will silently produce nothing later.
 
 ---
 
-## Phase 5 — Build Detections (Sigma → Elastic)
+## Phase 6 — Build Detections (Sigma → Elastic)
 
-### 5.1 Activate the sigma-cli virtual environment
+### 6.1 Activate the sigma-cli virtual environment
 ```bash
 cd ~/detection-lab
 source ~/sigma-venv/bin/activate
@@ -258,15 +281,20 @@ sigma version
 ```
 (Needs to be re-activated in every new terminal session.)
 
-### 5.2 Convert Sigma rules to Elasticsearch Lucene queries
+### 6.2 Convert Sigma rules to Elasticsearch Lucene queries
 
-**T1059.001 — PowerShell download cradle**
+**T1059.001 — PowerShell**
 ```bash
 sigma convert -t lucene -p ecs_windows t1059_001_powershell.yml
 ```
 ```
 process.executable.caseless:*\\powershell.exe AND (process.command_line:(*.DownloadString* OR *.DownloadFile* OR *Invoke\-WebRequest*))
-```
+``` 
+
+To confirm logs in Elastic  filter with:
+
+  process.name : "powershell.exe" AND event.code : "1"
+  Expand one of the boxes and search for process.command_line to see if you will see the log.
 
 **T1547.001 — Registry Run key persistence**
 ```bash
@@ -275,6 +303,10 @@ sigma convert -t lucene -p ecs_windows t1547_001_registry.yml
 ```
 registry.path:(*\\Microsoft\\Windows\\CurrentVersion\\Run\\* OR *\\Microsoft\\Windows\\CurrentVersion\\RunOnce\\*)
 ```
+To confirm Kibana actually logs this filter with:
+ 
+process.name : "powershell.exe" AND event.code : "1"
+Expand one of the boxes and search for process.command_line to see if you will see the log.
 
 **T1003 — Credential dumping (LSASS access)**
 ```bash
@@ -291,14 +323,19 @@ sigma convert -t lucene -p ecs_windows t1082-system-information-discovery.yml
 ```
 process.command_line:(*systeminfo* OR *Get\-ComputerInfo* OR *Get\-CimInstance\ Win32_OperatingSystem* OR *Get\-CimInstance\ Win32_ComputerSystem* OR *Get\-WmiObject\ Win32_OperatingSystem* OR *Get\-WmiObject\ Win32_ComputerSystem*)
 ``` 
+To confirm logs in Kibana filter with: 
 
-### 5.3 Set up response-integration connectors in Kibana for two Mitre attacks.
+process.command_line: *systeminfo* and event.code: "1" process.ergs
+
+
+### 6.3 Set up response-integration connectors in Kibana for two Mitre attacks.
 
 **Stack Management → Connectors → Create connector**
 
 | Technique | Connector type | Purpose |
 |---|---|---|
-| T1059.001 | Webhook | POSTs a JSON payload to a REST endpoint (webhook.site during testing) |
+| T1059.001 | Webhook | POSTs a JSON payload to a REST endpoint (webhook.site during testing) | 
+| T1082 | Webhook | POSTs a JSON payload to a REST endpoint (webhook.site during testing) | 
 | T1547.001 | Jira | Auto-creates a Jira issue in the `PER` (Persistence) project |
 
 **Webhook connector — `T1059-PowerShell-Webhook`**
@@ -322,7 +359,7 @@ Invoke-RestMethod -Method Post -Uri "https://webhook.site/<my-unique-id>" -Body 
   (stored only in the connector config, not in this repo)
 - Tested in-UI, confirmed a test issue appeared in the `PER` project.
 
-### 5.4 Create the detection rules
+### 6.4 Create the detection rules
 
 **Security → Rules → Manage rules → Create new rule**, for each technique:
 
@@ -335,10 +372,20 @@ Invoke-RestMethod -Method Post -Uri "https://webhook.site/<my-unique-id>" -Body 
 - **Actions:**
   - T1059.001 → Webhook action, JSON body with `{{context.rule.name}}` /
     `{{context.alerts.length}}` template variables
+  - T1082 → Webhook action, JSON body with `{{context.rule.name}}` /
+    `{{context.alerts.length}}` template variables
+      >     {"rule_name": "{{context.rule.name}}",
+      >   "rule_id": "{{context.rule.id}}",
+      >   "alert_count": "{{context.alerts.length}}",
+      >   "severity": "{{context.rule.severity}}",
+      >   "timestamp": "{{context.date}}",
+      >   "host": "{{context.alerts.0.host.name}}",
+      >   "command_line": "{{context.alerts.0.process.command_line}}" 
+      >   }
   - T1547.001 → Jira action:
     - Issue type: Task
     - Summary (required field): `SIEM Alert: T1547.001 - Registry Run Key Persistence Detected`
-    - Additional comments: rule name + alert count via Mustache variables
+    - Additional comments: rule name + alert count via Mustache variables 
     - **Response actions** (Osquery / Elastic Defend) left empty — those
       require Elastic Agent + Defend deployed on the endpoint, which this
       lab doesn't use (Winlogbeat/Sysmon and Filebeat/Auditd instead)
@@ -346,36 +393,13 @@ Invoke-RestMethod -Method Post -Uri "https://webhook.site/<my-unique-id>" -Body 
       (bundles all matches from one run into a single Jira ticket instead of
       one ticket per matching event)
 
-### 5.5 Re-trigger and confirm
+### 6.5 Re-trigger and confirm alerts in both Kibana, Webhook and Jira.
 
 ```powershell
+Invoke-AtomicTest T1059.001
+
+Invoke-AtomicTest T1082
+
 Invoke-AtomicTest T1547.001
 ```
 
-**Result — T1547.001:** 10 High-severity alerts fired in Kibana
-(`t1547_001 Registry`, host `desktop-0r0eq17`), and a corresponding Jira
-issue (`PER-1`) was created successfully. Full detection → alert → ticket
-pipeline confirmed working end-to-end.
-
-**Result — T1059.001:** re-running the unscoped technique produced a  problem — most sub-tests fail on `Access is denied`, and the one
-that does succeed (Test #6) uses a COM-object-based download method whose
-Sysmon `CommandLine` field doesn't contain the literal strings the Sigma
-rule searches for. Searching Kibana Discover for `DownloadString` only
-surfaced T1547.001 events — because that atomic's *own* staging script
-happens to use `DownloadString` internally to fetch its payload. Root cause
-confirmed via Discover: no matching Sysmon event exists for the T1059.001
-pattern this rule targets, so zero alerts is the correct (if unhelpful)
-behavior — not a broken rule.
-
-**Fix:** rather than fight Test #6's elevation and COM-logging quirks,
-switched the third technique to **T1082 — System Information Discovery,
-Test #1** (`systeminfo & reg query ...`), which requires no elevation and
-produces a plain Sysmon Event ID 1 process-creation log:
-I connected it using Jira and I was able to capture the logs.
-
-```powershell
-Invoke-AtomicTest T1082 -TestNumbers 1
-```
-
-
----
