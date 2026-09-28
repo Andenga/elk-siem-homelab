@@ -12,7 +12,7 @@ This lab covers endpoint and network telemetry, a Windows victim feeding Elastic
 
 All tools used are free or have a free trial.
 
-> **Note on secrets:** passwords, API keys, and other PII have been redacted, I have replaced them with placeholders, please take not of that as you recreate the project.
+> **Note on secrets:** passwords, API keys, and other PII have been redacted, I have replaced them with placeholders, please take note of that as you recreate the project.
 
 ## Architecture
 
